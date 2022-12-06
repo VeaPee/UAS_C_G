@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama_tournament');
             $table->string('tanggal_tournament');
-            $table->string('prizepool');
-            $table->string('totalTeam');
+            $table->integer('prizepool');
+            $table->integer('totalTeam');
             $table->unsignedBigInteger('id_team');
             $table->foreign('id_team')->references('id')->on('teams');
             $table->timestamps();

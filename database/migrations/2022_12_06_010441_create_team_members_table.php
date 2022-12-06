@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_team');
             $table->foreign('id_team')->references('id')->on('teams');
             $table->string('member_name');
-            $table->string('idgame');
+            $table->string('id_game');
             $table->timestamps();
         });
     }
