@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('tanggal_tournament');
             $table->string('prizepool');
             $table->string('totalTeam');
-            $table->foreign('id_team')->references('id')->on('departemens')->onDelete('cascade');
+            $table->unsignedBigInteger('id_team');
+            $table->foreign('id_team')->references('id')->on('teams');
             $table->timestamps();
         });
     }
