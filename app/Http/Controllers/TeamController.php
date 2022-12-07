@@ -101,11 +101,11 @@ class TeamController extends Controller
             //delete team
             $team->delete();
 
-            return new teamResource(true, 'Data team Dihapus!', $team);
+            return new TeamResource(true, 'Data team Dihapus!', $team);
 
         }
 
         //data team not found
-        return new teamResource(false, 'Data team Tidak Ditemukan!', $team);
+        return new TeamResource(false, 'Data team Tidak Ditemukan!', $team);
     }
 }
