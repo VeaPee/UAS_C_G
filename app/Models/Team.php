@@ -15,4 +15,9 @@ class Team extends Model
         'pelatih',
         'analis',
         ]; 
+    
+    public function teamMember()
+    {
+        return $this->belongsTo(TeamMember::class, 'id_team');
+    }
 }
