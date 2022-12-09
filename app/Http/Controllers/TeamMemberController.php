@@ -32,8 +32,8 @@ class TeamMemberController extends Controller
         //Validasi Formulir
         $validator = Validator::make($request->all(), [
             'member_name' => 'required',
-            'id_game' => 'required|numeric|max:10',
-            'id_team' => 'required|numeric|max:7',
+            'id_game' => 'required|numeric|digits:10',
+            'id_team' => 'required|numeric|digits:7',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -65,8 +65,8 @@ class TeamMemberController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'member_name' => 'required',
-            'id_game' => 'required|numeric|max:10',
-            'id_team' => 'required|numeric|max:7',
+            'id_game' => 'required|numeric|digits:10',
+            'id_team' => 'required|numeric|digits:7',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);

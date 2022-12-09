@@ -16,4 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::get('registration', [AuthController::class, 'registration'])->name('register');
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+  
+/* New Added Routes */
+Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); 
+Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify');
+
 });

@@ -31,10 +31,10 @@ class TournamentController extends Controller
         //Validasi Formulir
         $validator = Validator::make($request->all(), [
             'nama_tournament' => 'required',
-            'tanggal_tournament' => 'required',
+            'tanggal_tournament' => 'required|date_format:Y-m-d',
             'prizepool' => 'required',
             'totalTeam' => 'required',
-            'id_team'
+            'id_team' => 'required|numeric|digits:7'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -55,10 +55,10 @@ class TournamentController extends Controller
         //set validation
         $validator = Validator::make($request->all(), [
             'nama_tournament' => 'required',
-            'tanggal_tournament' => 'required',
+            'tanggal_tournament' => 'required|date_format:Y-m-d',
             'prizepool' => 'required',
             'totalTeam' => 'required',
-            'id_team'
+            'id_team' => 'required|numeric|digits:7'
         ]);
         
         //response error validation

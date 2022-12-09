@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes(['verify' => true]);
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+// Route Resource
+Route::resource('/team', \App\Http\Controllers\TeamController::class);
+Route::get('/team', 'App\Http\Controllers\TeamController@index')->name('team.index');
+
+Route::resource('/teammember', \App\Http\Controllers\TeamMemberController::class);
+Route::get('/teammember', 'App\Http\Controllers\TeamMemberController@index')->name('teammember.index');
+
+Route::resource('/tournament', \App\Http\Controllers\TournamentController::class);
+Route::get('/tournamen', 'App\Http\Controllers\TournamentController@index')->name('tournament.index');
+
