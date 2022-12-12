@@ -6,21 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class TeamMember extends Model
+class TransaksiTicket extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'member_name',
-        'id_game',
-        'id_team',
+        'hargaTicket',
+        'tempatDuduk',
+        'jenisTicket',
+        'statusPembayaran'
         ]; 
-    
-    public function team()
-    {
-        return $this->belongsTo(Team::class, 'id_team');
-    }
-
+        
     public function getCreatedAttribute(){
             if(!is_null($this->attributes['created_at'])){
                 return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i:s');
@@ -33,4 +29,3 @@ class TeamMember extends Model
             }
         }
 }
-

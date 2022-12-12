@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VerifyController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,16 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
   
+Route::get('email/verify/{id}', [VerifyController::class, 'verify'])->name('verification.verify');
+Route::get('email/resend', [VerifyController::class, 'resend'])->name('verification.resend');
+
 /* New Added Routes */
-Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); 
-Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify');
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // show profile auth user
+    Route::get('/profile', [UserController::class, 'show']);
+    // update profile auth user
+    Route::put('/profile', [UserController::class, 'update']);
+
+    Route::get('/user', [AuthController::class, 'user']);
+    Route::get('/logout', [AuthController::class, 'logout']);
 });

@@ -17,10 +17,10 @@ class Team extends Model
         'analis',
         ]; 
     
-    public function teamMember()
-    {
-        return $this->belongsTo(TeamMember::class, 'id_team');
-    }
+    
+    public function teamMember(){
+        return $this->hasMany(TeamMember::class,'id_team');
+    }   
 
     public function getCreatedAttribute(){
         if(!is_null($this->attributes['created_at'])){

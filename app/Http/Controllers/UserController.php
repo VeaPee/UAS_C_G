@@ -25,74 +25,50 @@ class UserController extends Controller
             'data' => null
         ], 404);
     }
-
+    
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        if(is_null($user)){
-            return response([
-                'message' => 'User Not Found',
-                'data' => null
-            ], 404);
-        }
+        $user = auth()->user();
 
-        $updateData = $request->all();
-        $validate = Validator::make($updateData, [
+        $data = $request->all();
+
+        $validate = Validator::make($data, [
             'name' => 'required|max:60',
-            'email' => 'required|email:rfc,dns|unique:users',
-            'password' => 'required|min:8|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/'
+            'email' => 'required|email|unique:users' . $user->id,
+            'password' => 'required|min:8',
+            'picture' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
 
-        if($validate->fails())
-            return response(['message' => $validate->errors()], 400);
-
-        $passwordCrypt = bcrypt($updateData['password']);
-
-        $user->name = $updateData['name'];
-        $user->email = $updateData['email'];
-        $user->password = $passwordCrypt;
-
-
-        if($user->save()){
-            return response([
-                'message' => 'Update User Success',
-                'data' => $user
-            ], 200);
+        // if validation failed
+        if ($validate->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation Error',
+                'data' => $validate->errors()
+            ], 400);
         }
+        
+        $up = 'users';
+        $image = $request->file('picture');
+        $image_uploaded_path = $image->store($up, 'public');
+        $user['picture'] = basename($image_uploaded_path);
 
-        return response([
-            'message' => 'Update User Failed',
-            'data' => null
-        ], 400);
+        $user['password'] = bcrypt($request->password);
+
+        $user = User::find($user->id);
+        $user->update($data);
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile Updated',
+            'data' => $user
+        ], 200);
     }
 
-    public function destroy($id)
+    public function show()
     {
-        $user = User::find($id);
-
-        if(is_null($user)){
-            return response([
-                'message' => 'User Not Found',
-                'data' => null
-            ], 404);
-        }
-
-        if($user->delete()) {
-            return response([
-                'message' => 'Delete User Success',
-                'data' => $user
-            ], 200);
-        }
-
-        return response([
-            'message' => 'Delete User Failed',
-            'data' => null
-        ], 400);
-    }
-
-    public function show($id)
-    {
-        $user = User::find($id);
+        $user = auth()->user();
 
         if(!is_null($user)){
             return response([
