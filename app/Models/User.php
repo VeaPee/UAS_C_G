@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Carbon\Carbon;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -22,7 +22,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'is_email_verified'
+        'foto'
+    ];
+
+    public static $rules = [
+        "name" => "required",
+        "email" => "required|email",
+        "password" => "required",
     ];
 
     /**

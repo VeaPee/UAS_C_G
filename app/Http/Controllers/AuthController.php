@@ -2,140 +2,127 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\UserVerify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail as Mail;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+// use Illuminate\Validation\Rule as rules;
 
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
-        $registrationData = $request->all();
-
-        $validate = Validator::make($registrationData, [
-            'name' => 'required|max:60',
-            'email' => 'required|email:rfc,dns|unique:users',
-            'password' => 'required|min:8|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/',
-        ]);
-
-        if($validate->fails())
-            return response(['message' => $validate->errors()], 400);
-
-        $registrationData['password'] = bcrypt($request->password);
-
-        $user = User::create($registrationData);
-
-        return response([
-            'message' => 'Register Success',
-            'user' => $user
-        ], 200);
-    }
-
-    public function postRegistration(Request $request)
-    {  
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-           
-        $data = $request->all();
-        $createUser = $this->create($data);
-  
-        $token = Str::random(64);
-  
-        UserVerify::create([
-              'user_id' => $createUser->id, 
-              'token' => $token
-            ]);
-  
-        Mail::send('almindosaviorrammang@gmail.com', ['token' => $token], function($message) use($request){
-              $message->to($request->email);
-              $message->subject('Email Verification Mail');
-          });
-         
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
-    }
-
-    public function login(Request $request){
-        $loginData = $request->all();
-
-        $validate = Validator::make($loginData,[
-            'email' => 'required|email:rfc,dns',
-            'password' => 'required'
-        ]);
-
-        if($validate->fails())
-            return response(['message' => $validate->errors()], 400);
-
-        if(!Auth::attempt($loginData))
-            return response(['message' => 'Invalid Credentials'], 401);
-
-        $user = Auth::user();
-        $token = $user->CreateToken('Authentication Token')->accessToken;
-
-        return response([
-            'message' => 'Authenticated',
-            'user' => $user,
-            'token_type' => 'Bearer',
-            'access_token' => $token
-        ]);
-    }
-
-    public function postLogin(Request $request)
+    //
+    /**
+     * Create User
+     * @param Request $request
+     * @return User
+     */
+    public function register(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-   
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
-        }
-  
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
-    }
+        try {
+            $data = $request->all();
+            if($request->hasFile('foto')) $data['foto'] = ImageUpload::uploadImage($request, 'foto');
 
-    public function logout(Request $request){
+            $validateUser = Validator::make($data,User::$rules);
 
-        $request->user()->token()->revoke();
-        
-        return response(['message' => 'You have been successfully logged out.'], 200);
-    }
-
-    public function verifyAccount($token)
-    {
-        $verifyUser = UserVerify::where('token', $token)->first();
-  
-        $message = 'Sorry your email cannot be identified.';
-  
-        if(!is_null($verifyUser) ){
-            $user = $verifyUser->user;
-              
-            if(!$user->is_email_verified) {
-                $verifyUser->user->is_email_verified = 1;
-                $verifyUser->user->save();
-                $message = "Your e-mail is verified. You can now login.";
-            } else {
-                $message = "Your e-mail is already verified. You can now login.";
+            if($validateUser->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validateUser->errors()
+                ], 401);
             }
+            
+            $data['password'] = Hash::make($data['password']);
+
+            $user = User::create($data);
+            $user->sendEmailVerificationNotification();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Created Successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
         }
-  
-      return redirect()->route('login')->with('message', $message);
     }
 
-    public function dashboard()
+    /**
+     * Login The User
+     * @param Request $request
+     * @return User
+     */
+    public function login(Request $request)
     {
-        if(Auth::check()){
-            return view('dashboard');
+        try {
+            $validateUser = Validator::make($request->all(),
+            [
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
+
+            if($validateUser->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validateUser->errors()
+                ], 401);
+            }
+
+            if(!Auth::attempt($request->only(['email', 'password']))){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Email & Password does not match with our record.',
+                ], 401);
+            }
+
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user->hasVerifiedEmail()) {
+                return response()->json([
+                    'status' => false,
+                    "message" => "Email belum terverifikasi."
+                ], 400);
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Logged In Successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
         }
-  
-        return redirect("login")->withSuccess('Opps! You do not have access');
+    }
+
+    // logout
+    public function logout()
+    {
+        try {
+            auth()->user()->currentAccessToken()->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Logged Out Successfully',
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 }
