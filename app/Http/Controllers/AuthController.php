@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\UserVerify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -85,40 +85,13 @@ class AuthController extends Controller
     }
     
 
-    public function logout(Request $request){
-
-        $request->user()->token()->revoke();
-        
-        return response(['message' => 'You have been successfully logged out.'], 200);
-    }
-
-    public function verifyAccount($token)
+    public function logout()
     {
-        $verifyUser = UserVerify::where('token', $token)->first();
-  
-        $message = 'Sorry your email cannot be identified.';
-  
-        if(!is_null($verifyUser) ){
-            $user = $verifyUser->user;
-              
-            if(!$user->is_email_verified) {
-                $verifyUser->user->is_email_verified = 1;
-                $verifyUser->user->save();
-                $message = "Your e-mail is verified. You can now login.";
-            } else {
-                $message = "Your e-mail is already verified. You can now login.";
-            }
-        }
-  
-      return redirect()->route('login')->with('message', $message);
-    }
+        auth()->user()->currentAccessToken()->delete();
 
-    public function dashboard()
-    {
-        if(Auth::check()){
-            return view('dashboard');
-        }
-  
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return response()->json([
+            'status' => true,
+            'message' => 'User Logged Out Successfully',
+        ], 200);
     }
 }
