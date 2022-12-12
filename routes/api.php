@@ -17,11 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+// Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+// Route::get('register', [AuthController::class, 'register'])->name('register');
+// Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+// Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('register', 'Api\AuthController@register');
+Route::post('postRegistration', 'Api\AuthController@postRegistration');
+Route::post('login', 'Api\AuthController@login');
+Route::post('postLogin', 'Api\AuthController@postLogin');
+Route::post('logout', 'Api\AuthController@logout');
+
   
 /* New Added Routes */
 Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); 
