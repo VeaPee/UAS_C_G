@@ -1,11 +1,18 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
+
+//import router
 import router from './router'
 
-Vue.config.productionTip = false
+//import Bootstrap, Popper, jQuery
+import 'bootstrap/dist/css/bootstrap.css'
+import 'jquery/dist/jquery.min'
+import 'popper.js/dist/popper.min'
+import 'bootstrap/dist/js/bootstrap.min'
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+const app = createApp(App)
+
+//use vue router
+app.use(router)
+
+app.mount('#app')

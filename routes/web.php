@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['verify' => true]);
-
 
 
 Route::get('/', function () {
@@ -29,5 +27,7 @@ Route::resource('/teammember', \App\Http\Controllers\TeamMemberController::class
 Route::get('/teammember', 'App\Http\Controllers\TeamMemberController@index')->name('teammember.index');
 
 Route::resource('/tournament', \App\Http\Controllers\TournamentController::class);
-Route::get('/tournamen', 'App\Http\Controllers\TournamentController@index')->name('tournament.index');
+Route::get('/tournament', 'App\Http\Controllers\TournamentController@index')->name('tournament.index');
 
+Route::resource('/user', \App\Http\Controllers\UserController::class);
+Route::get('/user', 'App\Http\Controllers\UserController@index')->name('user.index');
