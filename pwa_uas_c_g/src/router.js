@@ -8,12 +8,12 @@ const routes = [
         component: () => import("@/components/DashboardLayout.vue"),
         children: [
             {
-                path: "/",
+                path: "/register",
                 name: "register",
                 component: () => import("@/views/RegisterPage.vue"),
               },
               {
-                path: "/",
+                path: "/login",
                 name: "login",
                 component: () => import("@/views/LoginPage.vue"),
               },
