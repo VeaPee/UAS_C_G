@@ -12,38 +12,45 @@ hargaTicket',
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-text-field 
+              
+                <v-text-field 
                 v-model="form.nama" 
                 label="Tempat Duduk" 
                 required>
             </v-text-field>
+            
             <v-text-field 
                 v-model="form.email" 
                 label="Email" 
                 required>
             </v-text-field>
+            
             <v-text-field 
                 v-model="form.telepon" 
                 label="Telepon" 
                 required>
             </v-text-field>
+            
             <v-select 
-                v-model="form.jenis_paket" 
+                v-model="form.jenisTicket" 
                 @change="harga" :items="['VVIP', 'VIP', 'Economy']" 
-                label="Jenis Paket" 
+                label="Jenis Ticket" 
                 required>
             </v-select>
+            
             <v-text-field 
-                v-model="form.harga_paket" 
+                v-model="form.hargaTiket" 
                 label="Harga Paket" 
                 readonly>
             </v-text-field>
+            
             <v-select 
                 v-model="form.promo" :items="promo" 
                 label="Promo" 
                 required>
             </v-select>
-            </v-container>
+            
+        </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -78,8 +85,8 @@ hargaTicket',
           nama: null,
           email: null,
           telepon: null,
-          jenis_paket: null,
-          harga_paket: null,
+          jenisTicket: null,
+          hargaTiket: null,
           promo: null,
         },
         form_promo: {
@@ -116,8 +123,8 @@ hargaTicket',
                 nama: this.form.nama,
                 email: this.form.email,
                 telepon: this.form.telepon,
-                jenis_paket: this.form.jenis_paket,
-                harga_paket: this.form.harga_paket,
+                jenisTicket: this.form.jenisTicket,
+                hargaTiket: this.form.hargaTiket,
                 promo_id: id_promo,
               },
               {
@@ -147,18 +154,18 @@ hargaTicket',
           email: null,
           password: null,
           telepon: null,
-          jenis_paket: null,
-          harga_paket: null,
+          jenisTicket: null,
+          hargaTiket: null,
           promo: null,
         };
       },
       harga() {
-        if (this.form.jenis_paket == "VVIP") {
-          this.form.harga_paket = 3000000;
-        } else if (this.form.jenis_paket == "VIP") {
-          this.form.harga_paket = 2000000;
-        } else if (this.form.jenis_paket == "Economy") {
-          this.form.harga_paket = 1000000;
+        if (this.form.jenisTicket == "VVIP") {
+          this.form.hargaTiket = 3000000;
+        } else if (this.form.jenisTicket == "VIP") {
+          this.form.hargaTiket = 2000000;
+        } else if (this.form.jenisTicket == "Economy") {
+          this.form.hargaTiket = 1000000;
         }
       },
       read_promo_id() {

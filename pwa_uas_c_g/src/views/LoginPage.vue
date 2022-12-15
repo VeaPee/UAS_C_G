@@ -25,7 +25,7 @@
       <v-container fill-height fluid>
         <v-card elevation="2" class="login">
           <h2 class="text-center " style="font-weight: 900;">MASUK</h2>
-          <p class="text-center mb-5">Selamat Datang di <b>Armedia</b>,<br>Toko buku termurah dan terlengkap di Yogyakarta<br>Silakan Masuk untuk melanjutkan...</p>
+          <p class="text-center mb-5">Selamat Datang di <b>Sonic Hunter</b>,<br>Team Esport Terbaik Serta Pengadaan Tournament Terbaik</p>
 
           <v-text-field 
             label="Email" 
@@ -45,7 +45,7 @@
           </v-text-field>
 
             <v-btn block class="m-0" outlined color="success" :loading="isLoading" @click="login()">Masuk</v-btn>
-              <p class="mt-3 text-center">Belum punya akun? <router-link to="/register">Daftar</router-link></p>
+              <p class="mt-3 text-center">Belum punya akun? <router-link to="/register">Register</router-link></p>
         </v-card>
       </v-container>
     </div>
