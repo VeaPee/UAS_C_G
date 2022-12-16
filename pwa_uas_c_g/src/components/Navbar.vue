@@ -27,6 +27,9 @@
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/transaksitiket' }">Transaksi Tiket</router-link>
               </li>
+              <!-- <li class="nav-item">
+                <router-link class="nav-link" :to="{ path: '/home' }">home</router-link>
+              </li> -->
             </ul>
             
             <ul class="nav navbar-nav flex-row justify-content-md-center justify-content-start flex-nowrap">
