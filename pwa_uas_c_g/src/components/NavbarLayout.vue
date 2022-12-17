@@ -2,7 +2,7 @@
     <div class="navbar">
       <nav class="navbar fixed-top navbar-dark navbar-expand-md justify-content-md-center justify-content-start">
         <div class="container-fluid">
-          <img src="../assets/sonic.jpg" alt="" width="28" height="28" />
+          <img src="../assets/Sonic.jpg" alt="" width="28" height="28" />
           <a class="navbar-brand judul">Sonic Hunter E-sport</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,9 +11,6 @@
             <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px; padding-right: 3.5rem" link>
               <li class="nav-item d-flex align-self-center">
                 <router-link class="nav-link" :to="{ path: '/' }">Beranda</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/tentangkami' }">Tentang Kami</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/team' }">Team</router-link>
@@ -27,6 +24,9 @@
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/transaksitiket' }">Transaksi Tiket</router-link>
               </li>
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ path: '/tentangkami' }">Tentang Kami</router-link>
+              </li>
               <!-- <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/home' }">home</router-link>
               </li> -->
@@ -39,29 +39,28 @@
                 </router-link>
               </div>
               <div class="d-flex" v-else-if="cekLogin() === 'user'" style="padding-left: 2.9rem">
-                <router-link class="router" :to="{ path: '/profil' }">
+                <router-link class="router" :to="{ path: '/profile' }">
                   <i class="fa fa-user-circle" aria-hidden="true" style="color: white; font-size: 35px"></i>
                 </router-link>
               </div>
               <div class="d-flex" v-else-if="cekLogin() === 'logout'">
                 <button type="button" @click="logout" class="btn btn-outline-primary" style="color: #f0f0f0">LOGOUT</button>
               </div>
-              <div class="d-flex" v-else>
-                <router-link class="router" :to="{ path: '/dashboard' }">
-                  <button type="button" class="btn btn-outline-primary" style="color: #f0f0f0; margin-left: 0.8rem">ADMIN</button>
-                </router-link>
-              </div>
             </ul>
           </div>
         </div>
       </nav>
       <v-snackbar v-model="snackbar" :color="color" timeout="2000" bottom> {{ error_message }} </v-snackbar>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <!-- View Route -->
+        <router-view></router-view>
+      </main>
     </div>
   </template>
   
   <script>
   export default {
-    name: "Navbar",
+    name: "NavbarProcess",
     data() {
       return {
         load: false,

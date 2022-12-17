@@ -1,8 +1,3 @@
-hargaTicket',
-        'tempatDuduk',
-        'jenisTicket',
-        'statusPembayaran'
-
 <template>
     <v-main>
       <div class="d-flex justify-content-center mt-16 mb-8">
@@ -71,7 +66,7 @@ hargaTicket',
   
   <script>
   export default {
-    name: "List",
+    name: "ListProcess",
     data() {
       return {
         load: false,

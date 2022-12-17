@@ -35,7 +35,7 @@
   
   <script>
   export default {
-    name: "List",
+    name: "ListProcess",
     data() {
       return {
         load: false,
