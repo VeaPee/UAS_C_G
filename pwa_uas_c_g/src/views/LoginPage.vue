@@ -1,78 +1,46 @@
-<!-- <template>
+<template>
     <div id="background">
-      <v-container fill-height fluid>
-        <v-card elevation="2" class="login">
-          <h2 class="text-center">MASUK</h2>
-          <p class="text-center mb-5">Selamat Datang di <b>Sonic Hunter</b>,<br>Team Esport Terbaik Serta Pengadaan Tournament Terbaik</p>
-
-          <v-text-field 
-            label="Email" 
-            v-model="user.email" 
-            placeholder="Masukkan Email" 
-            outlined 
-            :error-messages="errors.username">
-          </v-text-field>
-
-          <v-text-field 
-            type="password" 
-            label="Password" 
-            v-model="user.password" 
-            placeholder="Masukkan Password" 
-            outlined 
-            :error-messages="errors.password">
-          </v-text-field>
-
-            <v-btn block class="m-0" outlined color="success" :loading="isLoading" @click="login()">Masuk</v-btn>
-              <p class="mt-3 text-center">Belum punya akun? <router-link to="/register">Register</router-link></p>
-        </v-card>
+      <v-content>
+        <v-container fill-height fluid>
+        <v-layout align-center justify-center>
+          <v-card elevation="12" class="centered">
+            <h2 class="text-center">MASUK</h2>
+            <p class="text-center mb-5">Selamat Datang di <b>Sonic Hunter</b>,<br>Team Esport Terbaik Serta Pengadaan Tournament Terbaik</p>
+            <form @submit.prevent="login">
+              <label for="email">Email</label><br>
+              <input
+              class="text-center"
+              label="Email" 
+              v-model="user.email"
+              placeholder="Masukkan Email" 
+              outlined 
+              :error-messages="errors.email"><br><br>
+              <label for="password">Password</label>
+              <br>
+            <input
+            class="text-center"
+              type="password" 
+              label="Password" 
+              v-model="user.password" 
+              placeholder="Masukkan Password" 
+              outlined 
+              :error-messages="errors.password">
+            <br><br>
+              <btn type="submit" class="m-0" outlined color="success" @click="login()">Masuk</btn>
+            </form>
+            
+                <p class="mt-3 text-center">Belum punya akun? <router-link to="/register">Register</router-link></p>
+          </v-card>
+        </v-layout>
       </v-container>
-    </div>
-  </template> -->
-  <template>
-    <v-app id="background">
-       <v-content>
-          <v-container fluid fill-height>
-             <v-layout align-center justify-center>
-                <v-flex xs12 sm8 md4>
-                   <v-card class="elevation-12">
-                      <v-toolbar dark color="primary">
-                         <v-toolbar-title>Login form</v-toolbar-title>
-                      </v-toolbar>
-                      <v-card-text>
-                         <v-form>
-                            <v-text-field 
-                            label="Email" 
-                            v-model="user.email" 
-                            placeholder="Masukkan Email" 
-                            outlined 
-                            :error-messages="errors.username">
-                          </v-text-field>
+      </v-content>
 
-                          <v-text-field 
-                            type="password" 
-                            label="Password" 
-                            v-model="user.password" 
-                            placeholder="Masukkan Password" 
-                            outlined 
-                            :error-messages="errors.password">
-                          </v-text-field>
-                         </v-form>
-                      </v-card-text>
-                      <v-card-actions>
-                         <v-spacer></v-spacer>
-                         <v-btn color="primary" to="/">Login</v-btn>
-                      </v-card-actions>
-                   </v-card>
-                </v-flex>
-             </v-layout>
-          </v-container>
-       </v-content>
-    </v-app>
+    </div>
   </template>
+
   <script>
   import axios from 'axios'
   
-  /* eslint-disable */
   export default {
     name: 'LoginPage',
   
@@ -110,25 +78,27 @@
     #background {
       background: url(https://wallpapercave.com/wp/wp8371602.jpg);
       min-height: 100vh;
-      display: flex;
+      justify-content: center;
+      
     }
 
-    .login{
-      /* margin-top: 100px; */
-      margin: auto;
-      width: 550px;
-      /* max-width: 550px; */
-      /* text-align: center !important; */
+    .centered{
+      margin: 0;
+      width: 700px;
       padding: 20px;
-      border: 8px solid rgb(5,111,111);
+      border: 8px solid rgb(	3, 4, 94);
+      background-color: #FFFFFF;
       border-radius: 3px;
+      justify-content: center;
+      text-align: center;
+      max-width: 1316px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%)
     }
   
-    @media screen and (max-width: 1316px){
-      .login{
-        border: 5px solid rgb(5,111,111);
-      }
-    }
   </style>
   
   

@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+
 //import router
 import router from './router'
 
@@ -11,6 +12,7 @@ import 'popper.js/dist/popper.min'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@mdi/font/css/materialdesignicons.css'
+import "vuetify/dist/vuetify.min.css"
 
 
 const app = createApp(App)

@@ -55,9 +55,16 @@
         <!-- View Route -->
         <router-view></router-view>
       </main>
-    </div>
+      
+    </div><Footer />
   </template>
   
+  <script setup>
+
+  import Footer from '@/components/FooterLayout.vue'
+  
+  </script>
+
   <script>
   export default {
     name: "NavbarProcess",
@@ -80,7 +87,7 @@
           return "guest";
         } else {
           if (localStorage.getItem("user") == "user") {
-            if (this.$route.name == "Profil") return "logout";
+            if (this.$route.name == "profil") return "logout";
             else return "user";
           } else return "admin";
         }
@@ -115,7 +122,7 @@
       },
     },
   };
-  </script>
+</script>
   
   <style scoped>
   nav {

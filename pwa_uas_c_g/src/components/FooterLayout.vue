@@ -24,7 +24,7 @@
           </a>
         </div>
   
-        <div class="text-center text-white pt-3 pb-3 ps-3 copyright" style="padding-right: 1.75rem">© 2021 Copyright: All Rights Reserved</div>
+        <div class="text-center text-white pt-3 pb-3 ps-3 copyright" style="padding-right: 1.75rem">© 2022 Copyright: All Rights Reserved</div>
       </footer>
     </div>
   </template>
@@ -33,7 +33,9 @@
   footer {
     background-color: #03045e;
     width: 100%;
-    margin-top: auto;
+    position: fixed;
+  left: 0;
+  bottom: 0;
   }
   footer .btn,
   footer .copyright {

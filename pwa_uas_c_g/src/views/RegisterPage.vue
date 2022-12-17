@@ -1,83 +1,7 @@
-<!-- <template>
-    <div class="row justify-content-md-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            Register
-          </div>
-          <div class="card-body">
-            <form @submit.prevent="store">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input v-model="user.name" type="text" class="form-control" placeholder="Name..">
-              </div>
-              <div class="form-group">
-                <label for="email">Email address</label>
-                <input v-model="user.email" type="email" class="form-control" placeholder="Email..">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input v-model="user.password" type="password" class="form-control" placeholder="Password..">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template>
-  <script>
-  import { reactive, ref } from "vue";
-  import { useRouter } from "vue-router";
-  import axios from "axios";
-  export default {
-      setup() {
-          //state pegawai
-          const user = reactive({
-              name : "",
-              email : "",
-              password : "",
-  
-          });
-          //state validation
-          const validation = ref([]);
-          //vue router
-          const router = useRouter();
-  
-  
-          //method store
-          function store() {
-              let name = user.name;
-              let email = user.email;
-              let password = user.password;
-  
-              axios
-                  .post("http://localhost:8000/api/register", {
-                      name : name,
-                      email : email,
-                      password : password,
-  
-                  })
-                  .then(() => {
-                      router.push({ name: "login" });
-                  })
-                  .catch((error) => {
-                      //assign state validation with error
-                      validation.value = error.response.data;
-                  });
-          }
-          //return
-          return {user, validation, router, store };
-      },
-  };
-  </script>
-  <style></style>
-   -->
-
    <template>
     <div id="background">
       <v-container fill-height fluid>
-        <v-card elevation="2" class="mx-auto pa-4 register">
+        <v-card elevation="12" class="centered">
           <h2 class="text-center " style="font-weight: 900;">DAFTAR</h2>
           <p class="text-center mb-5">Selamat Datang di <b>Sonic Hunter</b>,<br>Team Esport Terbaik Serta Pengadaan Tournament Terbaik</p>
 
@@ -157,19 +81,25 @@
   </script>
   <style>
    #background {
-      background: url(https://i.pinimg.com/564x/ce/e2/7f/cee27f072a432b548f1e10a3eeb3a340.jpg);
+      background: url(https://wallpapercave.com/wp/wp8371602.jpg);
       min-height: 92vh;
       display: flex;
     }
-    .register{
-      /* margin-top: 100px; */
-      margin: auto;
-      width: 550px;
-      /* max-width: 550px; */
-      /* text-align: center !important; */
+    .centered{
+      margin: 0;
+      width: 700px;
       padding: 20px;
-      border: 8px solid rgb(5,111,111);
+      border: 8px solid rgb(	3, 4, 94);
+      background-color: #FFFFFF;
       border-radius: 3px;
+      justify-content: center;
+      text-align: center;
+      max-width: 1316px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%)
     }
   
    
