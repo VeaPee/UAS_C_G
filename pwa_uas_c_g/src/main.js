@@ -14,9 +14,8 @@ import '@mdi/font/css/materialdesignicons.css'
 
 
 const app = createApp(App)
-
-
 //use vue router
+
 app.use(router)
 
 app.mount('#app')
