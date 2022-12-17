@@ -1,6 +1,6 @@
 <template>
     <v-main>
-      <img src="../assets/background.jpeg" alt="Gambar Beranda" style="width: 100%" />
+      <img src="../assets/background.jpg" alt="Gambar Beranda" style="width: 100%" />
       <div style="color: #fff; position: absolute; top: 30%; left: 20%; right: 20%" class="text-left">
         <h1>Tentang Kami</h1>
         <br />

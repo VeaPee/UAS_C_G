@@ -2,25 +2,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 //define a routes
 
-import Vue from "vue";
-import VueRouter from "vue-router";
 
-Vue.use(VueRouter);
-
-function importComponent(path) {
-  return () => import(`./components/${path}.vue`);
-}
-
-function importLayout(path) {
-  return () => import(`./view/${path}.vue`);
-}
 const routes = [
     {
         path: "/",
         name: "beranda",
-        component: () => import("@/components/DashboardLayout.vue"),
+        component: () => import("@/components/NavbarLayout.vue"),
         children: [
-            {
+              {
                 path: "/register",
                 name: "register",
                 component: () => import("@/views/RegisterPage.vue"),
@@ -32,37 +21,37 @@ const routes = [
               },
               {
                 path: "/tentangkami",
-                component: importComponent("TentangKami"),
+                component: () => import("@/views/TentangKami.vue"),
                 name: "TentangKami",
                 meta: { title: "TentangKami" },
               },
               {
                 path: "/team",
-                component: importComponent("team"),
+                component: () => import("@/views/TeamPage.vue"),
                 name: "Team",
                 meta:{title: "Team"},
               },
               {
-                path: "/teamember",
-                component: importComponent("teammember"),
+                path: "/teammember",
+                component: () => import("@/views/TeamMember.vue"),
                 name: "TeamMember",
                 meta: {title: "TeamMember"},
               },
               {
                 path: "/tournament",
-                component: importComponent("tournament"),
+                component: () => import("@/views/TournamentPage.vue"),
                 name: "Tournament",
                 meta: {title: "Tournament"},
               },
               {
                 path: "/transaksitiket",
-                component: importComponent("transaksitiket"),
+                component: () => import("@/views/TransaksiTiket.vue"),
                 name: "TransaksiTiket",
                 meta: {title: "TransaksiTiket"},
               },
               {
                 path: "/profile",
-                component: importComponent("profile"),
+                component: () => import("@/views/ProfilePage.vue"),
                 name: "Profile",
                 meta: {title: "Profile"},
               },

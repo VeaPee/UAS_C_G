@@ -12,7 +12,7 @@
       </v-img>
   
       <v-card-subtitle class="pb-0">
-        Piala Presinden
+        Piala Presiden
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
