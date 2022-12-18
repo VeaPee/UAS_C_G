@@ -1,69 +1,70 @@
-//import vue router
-import { createRouter, createWebHistory } from "vue-router";
-//define a routes
+import VueRouter from "vue-router";
+import Vue from "vue";
 
 
-const routes = [
-    {
-        path: "/",
-        name: "beranda",
-        component: () => import("@/components/NavbarLayout.vue"),
-        children: [
-              {
-                path: "/register",
-                name: "register",
-                component: () => import("@/views/RegisterPage.vue"),
-              },
-              {
-                path: "/login",
-                name: "login",
-                component: () => import("@/views/LoginPage.vue"),
-              },
-              {
-                path: "/tentangkami",
-                component: () => import("@/views/TentangKami.vue"),
-                name: "TentangKami",
-                meta: { title: "TentangKami" },
-              },
-              {
-                path: "/team",
-                component: () => import("@/views/TeamPage.vue"),
-                name: "Team",
-                meta:{title: "Team"},
-              },
-              {
-                path: "/teammember",
-                component: () => import("@/views/TeamMember.vue"),
-                name: "TeamMember",
-                meta: {title: "TeamMember"},
-              },
-              {
-                path: "/tournament",
-                component: () => import("@/views/TournamentPage.vue"),
-                name: "Tournament",
-                meta: {title: "Tournament"},
-              },
-              {
-                path: "/transaksitiket",
-                component: () => import("@/views/TransaksiTiket.vue"),
-                name: "TransaksiTiket",
-                meta: {title: "TransaksiTiket"},
-              },
-              {
-                path: "/profile",
-                component: () => import("@/views/ProfilePage.vue"),
-                name: "Profile",
-                meta: {title: "Profile"},
-              },
-        ]
-    }
-    
-  
-];
+Vue.use(VueRouter);
 
-//create router
-const router = createRouter({
-  history: createWebHistory(),
-  routes // config routes
+function importComponent(path){
+    return () => import(`./components/${path}.vue`);
+}
+
+const router = new VueRouter({
+    mode: "history",
+    routes:[
+        {
+            path:"/",
+            name:"admin",
+            component: importComponent("DashboardLayout"),
+            children:[
+                //Dashboard
+                {
+                    path: "/",
+                    name: "Root",
+                    component: importComponent("DashboardIndex")
+                },
+                //To Do List
+                {
+                    path:"/gd",
+                    name:"Guided",
+                    component: importComponent("TodoList/ListItem"),
+                },
+                {
+                    path: "/ugd",
+                    name: "Activity Unguided",
+                    component: importComponent("TodoList/ActivityUnguided"),
+                },
+                {
+                    path: "/transaksi",
+                    name: "Transaksi Tiket",
+                    component: importComponent("pwa_10662/TransaksiTiket"),
+                },
+                {
+                    path: "/register",
+                    name: "Register Page",
+                    component: importComponent("pwa_10662/RegisterPage"),
+                },
+                {
+                    path: "/login",
+                    name: "Login Page",
+                    component: importComponent("pwa_10662/LoginPage"),
+                },
+                {
+                    path: "/profile",
+                    name: "Profile Page",
+                    component: importComponent("pwa_10662/ProfilePage"),
+                },
+                {
+                    path: "/tournament",
+                    name: "Tournament Page",
+                    component: importComponent("pwa_10662/TournamentPage"),
+                },
+                {
+                    path: "/aboutus",
+                    name: "About Us",
+                    component: importComponent("pwa_10662/AboutUs"),
+                },
+            ],
+        },
+    ],
 });
 export default router;

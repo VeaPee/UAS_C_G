@@ -22,10 +22,10 @@
                 <router-link class="nav-link" :to="{ path: '/tournament' }">Tournament</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/transaksitiket' }">Transaksi Tiket</router-link>
+                <router-link class="nav-link" :to="{ path: '/transaksi' }">Transaksi Tiket</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/tentangkami' }">Tentang Kami</router-link>
+                <router-link class="nav-link" :to="{ path: '/aboutus' }">About Us</router-link>
               </li>
               <!-- <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/home' }">home</router-link>
@@ -55,8 +55,8 @@
         <!-- View Route -->
         <router-view></router-view>
       </main>
-      
-    </div><Footer />
+      <Footer />
+    </div>
   </template>
   
   <script setup>

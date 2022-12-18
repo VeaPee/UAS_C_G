@@ -3,17 +3,41 @@
       <div class="d-flex justify-content-center mt-16 mb-8">
         <v-card persistent min-width="500px" elevation="8">
           <v-card-title class="backgroundhead">
-            <span class="headline"><b>Team</b></span>
+            <span class="headline"><b>Transaksi Tiket</b></span>
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-text-field v-model="form.namatim" label="Nama Tim" required></v-text-field>
-              <v-text-field v-model="form.kota" label="Kota" required></v-text-field>
-              <v-text-field v-model="form.pelatih" label="Pelatih" required></v-text-field>
-              <v-text-field v-model="form.analis" label="Analis" required></v-text-field>
-              <!-- <v-select v-model="form.jenis_paket" @change="harga" :items="['Paket Santuy', 'Paket Normal', 'Paket Buruan Kuy']" label="Jenis Paket" required></v-select> -->
-              <!-- <v-text-field v-model="form.harga_paket" label="Harga Paket" readonly></v-text-field> -->
-              <!-- <v-select v-model="form.promo" :items="promo" label="Promo" required></v-select> -->
+              <v-text-field 
+                v-model="form.nama" 
+                label="Tempat Duduk" 
+                required>
+            </v-text-field>
+            <v-text-field 
+                v-model="form.email" 
+                label="Email" 
+                required>
+            </v-text-field>
+            <v-text-field 
+                v-model="form.telepon" 
+                label="Telepon" 
+                required>
+            </v-text-field>
+            <v-select 
+                v-model="form.jenis_paket" 
+                @change="harga" :items="['VVIP', 'VIP', 'Economy']" 
+                label="Jenis Paket" 
+                required>
+            </v-select>
+            <v-text-field 
+                v-model="form.harga_paket" 
+                label="Harga Paket" 
+                readonly>
+            </v-text-field>
+            <v-select 
+                v-model="form.promo" :items="promo" 
+                label="Promo" 
+                required>
+            </v-select>
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -35,7 +59,7 @@
   
   <script>
   export default {
-    name: "ListProcess",
+    name: "TransaksiTiket",
     data() {
       return {
         load: false,
@@ -46,17 +70,24 @@
         orders: [],
         promo: [],
         form: {
-          namatim: null,
-          kota: null,
-          pelatih: null,
-          analis: null,
+          nama: null,
+          email: null,
+          telepon: null,
+          jenis_paket: null,
+          harga_paket: null,
+          promo: null,
+        },
+        form_promo: {
+          id: null,
+          nama_promo: null,
+          diskon: null,
         },
       };
     },
     methods: {
       save() {
         if (localStorage.getItem("user") == null) {
-          this.error_message = "Anda Harus Login Terlebih Dahulu Sebelum Melihat Team!";
+          this.error_message = "Anda Harus Login Terlebih Dahulu Sebelum Memesan!";
           this.color = "red";
           this.snackbar = true;
           this.load = false;
@@ -117,12 +148,12 @@
         };
       },
       harga() {
-        if (this.form.jenis_paket == "Paket Santuy") {
-          this.form.harga_paket = 100000;
-        } else if (this.form.jenis_paket == "Paket Normal") {
-          this.form.harga_paket = 200000;
-        } else if (this.form.jenis_paket == "Paket Buruan Kuy") {
-          this.form.harga_paket = 300000;
+        if (this.form.jenis_paket == "VVIP") {
+          this.form.harga_paket = 3000000;
+        } else if (this.form.jenis_paket == "VIP") {
+          this.form.harga_paket = 2000000;
+        } else if (this.form.jenis_paket == "Economy") {
+          this.form.harga_paket = 1000000;
         }
       },
       read_promo_id() {

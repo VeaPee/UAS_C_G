@@ -1,4 +1,4 @@
-# pwa_uas_c_g
+# vuecli-webpack
 
 ## Project setup
 ```

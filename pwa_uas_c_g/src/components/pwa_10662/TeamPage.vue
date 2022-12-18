@@ -1,51 +1,20 @@
-<template>
+<!-- <template>
     <v-main>
       <div class="d-flex justify-content-center mt-16 mb-8">
         <v-card persistent min-width="500px" elevation="8">
           <v-card-title class="backgroundhead">
-            <span class="headline"><b>Transaksi Tiket</b></span>
+            <span class="headline"><b>Team</b></span>
           </v-card-title>
           <v-card-text>
             <v-container>
-              
-                <v-text-field 
-                v-model="form.nama" 
-                label="Tempat Duduk" 
-                required>
-            </v-text-field>
-            
-            <v-text-field 
-                v-model="form.email" 
-                label="Email" 
-                required>
-            </v-text-field>
-            
-            <v-text-field 
-                v-model="form.telepon" 
-                label="Telepon" 
-                required>
-            </v-text-field>
-            
-            <v-select 
-                v-model="form.jenisTicket" 
-                @change="harga" :items="['VVIP', 'VIP', 'Economy']" 
-                label="Jenis Ticket" 
-                required>
-            </v-select>
-            
-            <v-text-field 
-                v-model="form.hargaTiket" 
-                label="Harga Paket" 
-                readonly>
-            </v-text-field>
-            
-            <v-select 
-                v-model="form.promo" :items="promo" 
-                label="Promo" 
-                required>
-            </v-select>
-            
-        </v-container>
+              <v-text-field v-model="form.namatim" label="Nama Tim" required></v-text-field>
+              <v-text-field v-model="form.kota" label="Kota" required></v-text-field>
+              <v-text-field v-model="form.pelatih" label="Pelatih" required></v-text-field>
+              <v-text-field v-model="form.analis" label="Analis" required></v-text-field>
+              <!-- <v-select v-model="form.jenis_paket" @change="harga" :items="['Paket Santuy', 'Paket Normal', 'Paket Buruan Kuy']" label="Jenis Paket" required></v-select> -->
+              <!-- <v-text-field v-model="form.harga_paket" label="Harga Paket" readonly></v-text-field> -->
+              <!-- <v-select v-model="form.promo" :items="promo" label="Promo" required></v-select> -->
+            </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -77,24 +46,17 @@
         orders: [],
         promo: [],
         form: {
-          nama: null,
-          email: null,
-          telepon: null,
-          jenisTicket: null,
-          hargaTiket: null,
-          promo: null,
-        },
-        form_promo: {
-          id: null,
-          nama_promo: null,
-          diskon: null,
+          namatim: null,
+          kota: null,
+          pelatih: null,
+          analis: null,
         },
       };
     },
     methods: {
       save() {
         if (localStorage.getItem("user") == null) {
-          this.error_message = "Anda Harus Login Terlebih Dahulu Sebelum Memesan!";
+          this.error_message = "Anda Harus Login Terlebih Dahulu Sebelum Melihat Team!";
           this.color = "red";
           this.snackbar = true;
           this.load = false;
@@ -115,11 +77,11 @@
             .post(
               this.$api + "/order",
               {
-                nama: this.form.nama,
-                email: this.form.email,
-                telepon: this.form.telepon,
-                jenisTicket: this.form.jenisTicket,
-                hargaTiket: this.form.hargaTiket,
+                namatim: this.form.namatim,
+                kota: this.form.kota,
+                pelatih: this.form.pelatih,
+                analis: this.form.analis,
+                harga_paket: this.form.harga_paket,
                 promo_id: id_promo,
               },
               {
@@ -145,22 +107,22 @@
       },
       resetForm() {
         this.form = {
-          nama: null,
-          email: null,
-          password: null,
-          telepon: null,
-          jenisTicket: null,
-          hargaTiket: null,
+        namatim: null,
+          kota: null,
+          pelatih: null,
+          analis: null,
+          jenis_paket: null,
+          harga_paket: null,
           promo: null,
         };
       },
       harga() {
-        if (this.form.jenisTicket == "VVIP") {
-          this.form.hargaTiket = 3000000;
-        } else if (this.form.jenisTicket == "VIP") {
-          this.form.hargaTiket = 2000000;
-        } else if (this.form.jenisTicket == "Economy") {
-          this.form.hargaTiket = 1000000;
+        if (this.form.jenis_paket == "Paket Santuy") {
+          this.form.harga_paket = 100000;
+        } else if (this.form.jenis_paket == "Paket Normal") {
+          this.form.harga_paket = 200000;
+        } else if (this.form.jenis_paket == "Paket Buruan Kuy") {
+          this.form.harga_paket = 300000;
         }
       },
       read_promo_id() {
@@ -186,4 +148,4 @@
       this.read_promo_id();
     },
   };
-  </script>
+  </script> -->
