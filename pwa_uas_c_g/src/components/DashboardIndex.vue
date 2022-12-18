@@ -1,7 +1,7 @@
 
 <template>
     <v-main>
-        <h1 class="text font-weight-medium mb-5 text-left">Dashboard</h1>
+        <h1 class="text font-weight-medium mb-5 text-left">List Tournament</h1>
 
         <v-item-group>
             <v-container>
@@ -13,7 +13,7 @@
                             src="https://teknokreatips.com/wp-content/uploads/2022/04/apa-itu-web-development.jpg"
                             ></v-img>
 
-                            <v-card-title><strong> Web Programming </strong></v-card-title>
+                            <v-card-title><strong> Tournament </strong></v-card-title>
 
                             <v-card-text>
                                 <v-row align="center" class="mx-0">

@@ -63,7 +63,10 @@
 
 <script>
 import axios from "axios";
+import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
+    name: "TambahTeam",
     setup() {
         //state member
         const member = reactive({

@@ -13,7 +13,7 @@
                 <router-link class="nav-link" :to="{ path: '/' }">Beranda</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/team' }">Team</router-link>
+                <router-link class="nav-link" :to="{ path: '/tambahteam' }">Team</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/teammember' }">Team Member</router-link>

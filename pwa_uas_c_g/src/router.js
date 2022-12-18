@@ -63,6 +63,11 @@ const router = new VueRouter({
                     name: "About Us",
                     component: importComponent("pwa_10662/AboutUs"),
                 },
+                {
+                    path: "/tambahteam",
+                    name: "Tambah Team",
+                    component: importComponent("pwa_10662/TambahTeam"),
+                },
             ],
         },
     ],
