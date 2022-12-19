@@ -35,7 +35,7 @@
             label="Upload Foto" 
             outlined dense>
           </v-file-input>
-            <v-btn block :loading="isLoading" @click="login()" outlined color="success">Daftar</v-btn>
+            <v-btn block :loading="isLoading" @click="login()" color="success">Daftar</v-btn>
               <p class="mt-3 text-center">Sudah Punya Akun? <router-link to="/login">Masuk</router-link></p>
         </v-card>
       </v-container>
