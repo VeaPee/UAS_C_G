@@ -7,37 +7,22 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-text-field 
-                v-model="form.nama" 
-                label="Tempat Duduk" 
-                required>
-            </v-text-field>
-            <v-text-field 
-                v-model="form.email" 
-                label="Email" 
-                required>
-            </v-text-field>
-            <v-text-field 
-                v-model="form.telepon" 
-                label="Telepon" 
-                required>
-            </v-text-field>
             <v-select 
-                v-model="form.jenis_paket" 
+                v-model="form.jenisTicket" 
                 @change="harga" :items="['VVIP', 'VIP', 'Economy']" 
                 label="Jenis Paket" 
                 required>
             </v-select>
             <v-text-field 
-                v-model="form.harga_paket" 
+                v-model="form.hargaTicket" 
                 label="Harga Paket" 
                 readonly>
             </v-text-field>
-            <v-select 
-                v-model="form.promo" :items="promo" 
-                label="Promo" 
+            <v-text-field
+                v-model="form.tempatDuduk" 
+                label="Tempat Duduk" 
                 required>
-            </v-select>
+            </v-text-field>
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -68,19 +53,10 @@
         color: "",
         order: new FormData(),
         orders: [],
-        promo: [],
         form: {
-          nama: null,
-          email: null,
-          telepon: null,
-          jenis_paket: null,
-          harga_paket: null,
-          promo: null,
-        },
-        form_promo: {
-          id: null,
-          nama_promo: null,
-          diskon: null,
+          tempatDuduk: null,
+          jenisTicket: null,
+          hargaTicket: null
         },
       };
     },
@@ -93,27 +69,14 @@
           this.load = false;
         } else {
           this.load = true;
-          var id_promo = null;
-          var select = null;
-          if (this.form.promo != null) {
-            select = this.form.promo;
-            for (let i = 0; i < this.form_promo.nama_promo.length; i++) {
-              if (select.includes(this.form_promo.nama_promo[i])) {
-                id_promo = this.form_promo.id[i];
-                break;
-              }
-            }
-          }
+
           this.$http
             .post(
-              this.$api + "/order",
+              this.$api + "/transaksi",
               {
-                nama: this.form.nama,
-                email: this.form.email,
-                telepon: this.form.telepon,
-                jenis_paket: this.form.jenis_paket,
-                harga_paket: this.form.harga_paket,
-                promo_id: id_promo,
+                jenisTicket: this.form.jenisTicket,
+                hargaTicket: this.form.hargaTicket,
+                tempatDuduk: this.form.tempatDuduk,
               },
               {
                 headers: {
@@ -138,45 +101,20 @@
       },
       resetForm() {
         this.form = {
-          nama: null,
-          email: null,
-          password: null,
-          telepon: null,
-          jenis_paket: null,
-          harga_paket: null,
-          promo: null,
+          jenisTicket: null,
+          hargaTicket: null,
+          tempatDuduk: null,
         };
       },
       harga() {
-        if (this.form.jenis_paket == "VVIP") {
-          this.form.harga_paket = 3000000;
-        } else if (this.form.jenis_paket == "VIP") {
-          this.form.harga_paket = 2000000;
-        } else if (this.form.jenis_paket == "Economy") {
-          this.form.harga_paket = 1000000;
+        if (this.form.jenisTicket == "VVIP") {
+          this.form.hargaTicket = 3000000;
+        } else if (this.form.jenisTicket == "VIP") {
+          this.form.hargaTicket = 2000000;
+        } else if (this.form.jenisTicket == "Economy") {
+          this.form.hargaTicket = 1000000;
         }
-      },
-      read_promo_id() {
-        var url = this.$api + "/promo";
-        this.$http
-          .get(url, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
-          .then((response) => {
-            let temp = response.data.data;
-            this.form_promo.id = temp.map((v) => v.id);
-            this.form_promo.nama_promo = temp.map((v) => v.nama_promo);
-            this.form_promo.diskon = temp.map((v) => v.diskon);
-            for (let i = 0; i < this.form_promo.nama_promo.length; i++) {
-              this.promo.push(this.form_promo.nama_promo[i] + ": diskon " + this.form_promo.diskon[i]);
-            }
-          });
-      },
-    },
-    mounted() {
-      this.read_promo_id();
+      }
     },
   };
   </script>

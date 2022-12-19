@@ -2,9 +2,7 @@
     <div id="background">
       <v-container fill-height fluid>
         <v-card elevation="12" class="centered">
-          <h2 class="text-center " style="font-weight: 900;">DAFTAR</h2>
-          <p class="text-center mb-5">Selamat Datang di <b>Sonic Hunter</b>,<br>Team Esport Terbaik Serta Pengadaan Tournament Terbaik</p>
-
+          <h2 class="text-center " style="font-weight: 1000;">DAFTAR</h2>
           <v-text-field 
             label="Name" 
             v-model="user.name" 
@@ -35,9 +33,9 @@
             :error-messages="errors.picture" 
             placeholder="Upload Foto" 
             label="Upload Foto" 
-            outlined show-size dense>
+            outlined dense>
           </v-file-input>
-            <v-btn block :loading="isLoading" @click="login()" outlined color="success">Daftar</v-btn>
+            <v-btn block :loading="isLoading" @click="login()" color="success">Daftar</v-btn>
               <p class="mt-3 text-center">Sudah Punya Akun? <router-link to="/login">Masuk</router-link></p>
         </v-card>
       </v-container>
