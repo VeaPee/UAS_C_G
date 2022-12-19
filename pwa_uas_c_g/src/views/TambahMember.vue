@@ -3,29 +3,18 @@
       <div class="d-flex justify-content-center mt-16 mb-8">
         <v-card persistent min-width="500px" elevation="8">
           <v-card-title class="backgroundhead">
-            <span class="headline"><b>Tambah Team</b></span>
+            <span class="headline"><b>Tambah Member</b></span>
           </v-card-title>
           <v-card-text>
             <v-container>
               <v-text-field 
-                v-model="form.nama_tim" 
-                label="Nama Tim" 
+                v-model="form.member_name" 
+                label="Nama" 
                 required>
             </v-text-field>
             <v-text-field 
-                v-model="form.Kota" 
-                label="Asal Kota" 
-                required>
-            </v-text-field>
-            <v-text-field 
-                v-model="form.pelatih" 
-                label="Nama Pelatih" 
-                required>
-            </v-text-field>
-
-            <v-text-field 
-                v-model="form.analis" 
-                label="Analis" 
+                v-model="form.id_game" 
+                label="UID" 
                 required>
             </v-text-field>
             
@@ -34,7 +23,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <router-link
-                :to="{ name: 'viewteam' }"
+                :to="{ name: 'TeamMember' }"
                 class="btn btn-md btn-outline-success"
                 >Cancel</router-link
               >

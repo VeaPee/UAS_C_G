@@ -13,6 +13,11 @@ const router = new VueRouter({
           component: () => import("@/components/NavbarLayout.vue"),
           children: [
                 {
+                  path: "/",
+                  name: "Root",
+                  component: () => import("@/views/DashboardIndex.vue"),
+                },
+                {
                   path: "/register",
                   name: "register",
                   component: () => import("@/views/RegisterPage.vue"),
@@ -33,6 +38,12 @@ const router = new VueRouter({
                   component: () => import("@/views/TambahTeam.vue"),
                   name: "TambahTeam",
                   meta: {title: "TambahTeam"},
+                },
+                {
+                  path: "/tambahmember",
+                  component: () => import("@/views/TambahMember.vue"),
+                  name: "TambahMember",
+                  meta: {title: "TambahMember"},
                 },
                 {
                   path: "/teammember",
@@ -57,6 +68,12 @@ const router = new VueRouter({
                   component: () => import("@/views/ProfilePage.vue"),
                   name: "Profile",
                   meta: {title: "Profile"},
+                },
+                {
+                  path: "/viewteam",
+                  component: () => import("@/views/ViewTeam.vue"),
+                  name: "viewteam",
+                  meta: {title: "viewteam"},
                 },
           ]
       }
