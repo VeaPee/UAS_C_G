@@ -46,6 +46,12 @@ const router = new VueRouter({
                   meta: {title: "TambahMember"},
                 },
                 {
+                  path: "/tambahtournament",
+                  component: () => import("@/views/TambahTournament.vue"),
+                  name: "TambahTournament",
+                  meta: {title: "TambahTournament"},
+                },
+                {
                   path: "/teammember",
                   component: () => import("@/views/TeamMember.vue"),
                   name: "TeamMember",

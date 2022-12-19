@@ -3,27 +3,38 @@
       <div class="d-flex justify-content-center mt-16 mb-8">
         <v-card persistent min-width="500px" elevation="8">
           <v-card-title class="backgroundhead">
-            <span class="headline"><b>Tambah Member</b></span>
+            <span class="headline"><b>Tambah Tournament</b></span>
           </v-card-title>
           <v-card-text>
             <v-container>
               <v-text-field 
-                v-model="form.member_name" 
-                label="Nama" 
+                v-model="form.nama_tournament" 
+                label="Nama Tournament" 
                 required>
             </v-text-field>
             <v-text-field 
-                v-model="form.id_game" 
-                label="UID" 
+                v-model="form.tanggal_tournament" 
+                label="Tanggal" 
                 required>
             </v-text-field>
-            
+            <v-text-field 
+                v-model="form.prizepool" 
+                label="Prizepool" 
+                required>
+            </v-text-field>
+
+            <v-text-field 
+                v-model="form.totalTeam" 
+                label="Total Team" 
+                required>
+            </v-text-field>
+
             </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <router-link
-                :to="{ name: 'TeamMember' }"
+                :to="{ name: 'Tournament' }"
                 class="btn btn-md btn-outline-success"
                 >Cancel</router-link
               >
@@ -65,7 +76,7 @@
     methods: {
       save() {
         if (localStorage.getItem("user") == null) {
-          this.error_message = "Anda Harus Login Terlebih Dahulu Sebelum Bisa Menambah Member!";
+          this.error_message = "Anda Harus Login Terlebih Dahulu Sebelum Bisa Membuat Tournament!";
           this.color = "red";
           this.snackbar = true;
           this.load = false;
