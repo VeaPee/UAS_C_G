@@ -35,7 +35,7 @@
             label="Upload Foto" 
             outlined dense>
           </v-file-input>
-            <v-btn block :loading="isLoading" @click="login()" color="success">Daftar</v-btn>
+            <v-btn block :loading="isLoading" @click="register()" color="success">Daftar</v-btn>
               <p class="mt-3 text-center">Sudah Punya Akun? <router-link to="/login">Masuk</router-link></p>
         </v-card>
       </v-container>
@@ -45,19 +45,21 @@
   import axios from 'axios'
   /* eslint-disable */
   export default {
-    name: 'LoginPage',
+    name: 'RegisterPage',
   
     data: () => ({
       user: {
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        picture: '',
       },
       errors: {},
       isLoading: false
     }),
   
     methods: {
-      login() {
+      register() {
         this.isLoading = true
         axios.post('http://127.0.0.1:8000/api/' + "register", this.user, {
           headers: {
