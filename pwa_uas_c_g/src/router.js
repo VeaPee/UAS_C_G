@@ -4,72 +4,56 @@ import Vue from "vue";
 
 Vue.use(VueRouter);
 
-function importComponent(path){
-    return () => import(`./components/${path}.vue`);
-}
-
 const router = new VueRouter({
-    mode: "history",
+    mode: 'history',
     routes:[
-        {
-            path:"/",
-            name:"admin",
-            component: importComponent("DashboardLayout"),
-            children:[
-                //Dashboard
+      {
+          path: "/",
+          name: "beranda",
+          component: () => import("@/components/NavbarLayout.vue"),
+          children: [
                 {
-                    path: "/",
-                    name: "Root",
-                    component: importComponent("DashboardIndex")
-                },
-                //To Do List
-                {
-                    path:"/gd",
-                    name:"Guided",
-                    component: importComponent("TodoList/ListItem"),
+                  path: "/register",
+                  name: "register",
+                  component: () => import("@/views/RegisterPage.vue"),
                 },
                 {
-                    path: "/ugd",
-                    name: "Activity Unguided",
-                    component: importComponent("TodoList/ActivityUnguided"),
+                  path: "/login",
+                  name: "login",
+                  component: () => import("@/views/LoginPage.vue"),
                 },
                 {
-                    path: "/transaksi",
-                    name: "Transaksi Tiket",
-                    component: importComponent("pwa_10662/TransaksiTiket"),
+                  path: "/aboutus",
+                  component: () => import("@/views/AboutUs.vue"),
+                  name: "TentangKami",
+                  meta: { title: "TentangKami" },
                 },
                 {
-                    path: "/register",
-                    name: "Register Page",
-                    component: importComponent("pwa_10662/RegisterPage"),
+                  path: "/tambahteam",
+                  component: () => import("@/views/TambahTeam.vue"),
+                  name: "TambahTeam",
+                  meta: {title: "TambahTeam"},
                 },
                 {
-                    path: "/login",
-                    name: "Login Page",
-                    component: importComponent("pwa_10662/LoginPage"),
+                  path: "/tournament",
+                  component: () => import("@/views/TournamentPage.vue"),
+                  name: "Tournament",
+                  meta: {title: "Tournament"},
                 },
                 {
-                    path: "/profile",
-                    name: "Profile Page",
-                    component: importComponent("pwa_10662/ProfilePage"),
+                  path: "/transaksitiket",
+                  component: () => import("@/views/TransaksiTiket.vue"),
+                  name: "TransaksiTiket",
+                  meta: {title: "TransaksiTiket"},
                 },
                 {
-                    path: "/tournament",
-                    name: "Tournament Page",
-                    component: importComponent("pwa_10662/TournamentPage"),
+                  path: "/profile",
+                  component: () => import("@/views/ProfilePage.vue"),
+                  name: "Profile",
+                  meta: {title: "Profile"},
                 },
-                {
-                    path: "/aboutus",
-                    name: "About Us",
-                    component: importComponent("pwa_10662/AboutUs"),
-                },
-                {
-                    path: "/tambahteam",
-                    name: "Tambah Team",
-                    component: importComponent("pwa_10662/TambahTeam"),
-                },
-            ],
-        },
-    ],
-});
+          ]
+      }
+    ]
+  });
 export default router;
