@@ -66,6 +66,8 @@
   </script>
 
   <script>
+
+import axios from 'axios'
   export default {
     name: "NavbarProcess",
     data() {
@@ -86,20 +88,18 @@
         if (localStorage.getItem("token") == null) {
           return "guest";
         } else {
-          if (localStorage.getItem("user") == "user") {
-            if (this.$route.name == "profil") return "logout";
+          if (localStorage.getItem("token") != null) {
+            if (this.$route.name == "Profile") return "logout"
             else return "user";
-          } else return "admin";
+          }
         }
       },
       logout() {
-        var url = this.$api + "/logout";
         this.load = true;
-        this.$http
-          .get(url, {
+          axios.get('http://127.0.0.1:8000/api/' + "logout", {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
-            },
+            }
           })
           .then((response) => {
             this.error_message = response.data.message;
@@ -110,7 +110,7 @@
             localStorage.removeItem("token");
             localStorage.removeItem("user");
             this.$router.push({
-              name: "Login",
+              name: "login",
             });
           })
           .catch((error) => {

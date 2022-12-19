@@ -25,18 +25,19 @@
                                   
                                 </v-row>
                                 <v-divider class="mx-4 bold"></v-divider>
+
                                 <v-row class="my-2 mx-5">                    
                                     <v-col cols="12" sm="12">
-                                        <v-text-field class="formtxt" v-model="user.nama" label="Name" :readonly="btnEdit == false"></v-text-field>
-                                        <!-- <v-text-field class="formtxt" v-model="user.username" label="Username" :readonly="btnEdit == false"></v-text-field> -->
+                                        <v-text-field class="formtxt" v-model="user.name" label="Name" :readonly="btnEdit == false"></v-text-field>
                                         <v-text-field class="formtxt" v-model="user.email" label="Email" :readonly="btnEdit == false"></v-text-field>
-                                        <!-- <v-text-field class="formtxt"  v-model="user.nohp" label="No Hp" :readonly="btnEdit == false"></v-text-field> -->
                                     </v-col>
                                 </v-row>
+
                                 <v-row v-if="btnEdit == true" class="mx-8 mt-n6 mb-3">
                                     <v-checkbox v-model="enabled" hide-details class="shrink" ></v-checkbox>
                                     <v-text-field v-model="newPassword" class="formtxt"  :disabled="!enabled" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" :type="show ? 'text' : 'password'" @click:append="show = !show" label="Password baru" placeholder="New Password"></v-text-field>
                                 </v-row>
+                                
                                 <v-col class="mt-5 ml-10" cols="3">
                                         <v-row>
                                             <v-btn class="my-10" v-if="btnEdit == false" @click.stop="btnEdit = !btnEdit" rounded outlined color="danger">
@@ -92,11 +93,9 @@
     },
     methods: {
         save() {
-            this.editdata.append('nama',this.user.nama);
-            this.editdata.append('username',this.user.username);
+            this.editdata.append('name',this.user.name);
             this.editdata.append('email',this.user.email);
-            this.editdata.append('nohp',this.user.nohp);
-            this.editdata.append('url_foto',this.url_foto);
+            this.editdata.append('picture',this.picture);
             if(!(this.newPassword == null)){
                 this.editdata.append('password',this.newPassword);
             }
