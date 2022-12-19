@@ -30,6 +30,7 @@
 </template>
 <script>
 import axios from 'axios'
+
 /* eslint-disable */
 export default {
   name: 'LoginPage',
@@ -51,12 +52,12 @@ export default {
           'Content-Type': 'application/json'
         }
       })
-        .then(res => {
+        .then((res) => {
           this.isLoading = false
           localStorage.setItem('token', res.data.token);
           this.$router.push('/')
         })
-        .catch(err => {
+        .catch((err) => {
           this.isLoading = false;
           this.errors = err.response.data.errors || {}
         })

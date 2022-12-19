@@ -34,4 +34,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/user', [AuthController::class, 'user']);
     Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::resource('/team', TeamController::class);
+
+    Route::resource('/tournament', TournamentController::class);
+
+    Route::resource('/transaksi', TicketController::class);
 });
