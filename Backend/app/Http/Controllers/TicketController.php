@@ -28,20 +28,20 @@ class TicketController extends Controller
     {
         //Validasi Formulir
         $validator = Validator::make($request->all(), [
+            'namaTournament' => 'required',
             'hargaTicket' => 'required',
             'tempatDuduk' => 'required',
-            'jenisTicket' => 'required',
-            'statusPembayaran' => 'required'
+            'jenisTicket' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
         //Fungsi Post ke Database
         $ticket = TransaksiTicket::create([
+            'namaTournament' => $request->namaTournament,
             'hargaTicket' => $request->hargaTicket,
             'tempatDuduk' => $request->tempatDuduk,
             'jenisTicket' => $request->jenisTicket,
-            'statusPembayaran' => $request->statusPembayaran,
         ]);
         return new TicketResource(true, 'Data ticket Berhasil Ditambahkan!', $ticket);
     }
@@ -50,10 +50,10 @@ class TicketController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
+            'namaTournament' => 'required',
             'hargaTicket' => 'required',
             'tempatDuduk' => 'required',
-            'jenisTicket' => 'required',
-            'statusPembayaran' => 'required'
+            'jenisTicket' => 'required'
         ]);
         
         //response error validation
@@ -68,10 +68,10 @@ class TicketController extends Controller
 
             //ticket post
             $ticket->update([
+                'namaTournament' => $request->namaTournament,
                 'hargaTicket' => $request->hargaTicket,
                 'tempatDuduk' => $request->tempatDuduk,
-                'jenisTicket' => $request->jenisTicket,
-                'statusPembayaran' => $request->statusPembayaran,
+                'jenisTicket' => $request->jenisTicket
             ]);
 
             return new TicketResource(true, 'Data ticket Berhasil Diubah!', $ticket);

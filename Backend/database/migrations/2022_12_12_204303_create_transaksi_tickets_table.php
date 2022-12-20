@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('transaksi_tickets', function (Blueprint $table) {
             $table->id();
+            $table->String('namaTournament');
             $table->integer('hargaTicket');
             $table->String('tempatDuduk');
             $table->String('jenisTicket');

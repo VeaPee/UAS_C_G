@@ -11,6 +11,7 @@ class TransaksiTicket extends Model
     use HasFactory;
 
     protected $fillable = [
+        'namaTournament',
         'hargaTicket',
         'tempatDuduk',
         'jenisTicket'
