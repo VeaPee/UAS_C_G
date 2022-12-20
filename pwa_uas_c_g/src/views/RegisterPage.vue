@@ -54,19 +54,22 @@
       snackbar: false,
       error_message: '',
       color: '',
+
       name: '',
+      nomor_hp: '',
+      password: '',
+      email: "",
       nameRules: [
                 (v) => !!v || "Harap isi Name terlebih dahulu",
       ],
-      nomor_hp: '',
+
       nomorRules: [
                 (v) => !!v || "Harap isi Nomor HP terlebih dahulu",
       ],
-      password: '',
       passwordRules: [
                 (v) => !!v || "Harap isi Password terlebih dahulu",
       ],
-      email: "",
+
       emailRules: [
                 (v) => !!v || "Harap isi E-mail terlebih dahulu",
       ],

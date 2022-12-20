@@ -5,10 +5,12 @@
         <h2 class="text-center" style="font-weight: 1000;">MASUK</h2>
 
         <v-text-field 
+          type="email"
           label="Email" 
           v-model="email" 
           placeholder="Masukkan Email" 
-          outlined >
+          outlined 
+          :rules="emailRules">
         </v-text-field>
 
         <v-text-field 
@@ -16,7 +18,8 @@
           label="Password" 
           v-model="password" 
           placeholder="Masukkan Password" 
-          outlined >
+          outlined 
+          :rules="passwordRules">
         </v-text-field>
 
           <v-btn block class="m-0" color="success" :loading="isLoading" @click="login()">Masuk</v-btn>
@@ -40,6 +43,13 @@ export default {
       color: "",
       password: "",
       email: "",
+      passwordRules: [
+                (v) => !!v || "Harap isi Password terlebih dahulu",
+      ],
+
+      emailRules: [
+                (v) => !!v || "Harap isi E-mail terlebih dahulu",
+      ],
     };
   },
 

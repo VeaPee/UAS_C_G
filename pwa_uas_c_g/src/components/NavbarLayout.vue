@@ -2,21 +2,18 @@
     <div class="navbar">
       <nav class="navbar fixed-top navbar-dark navbar-expand-md justify-content-md-center justify-content-start">
         <div class="container-fluid">
-          <img src="../assets/Sonic.jpg" alt="" width="28" height="28" />
-          <a class="navbar-brand judul">Sonic Hunter E-sport</a>
+          <img src="https://i.etsystatic.com/25165650/r/il/e02d40/2860302450/il_794xN.2860302450_feev.jpg" alt="" width="28" height="28" />
+          <a class="navbar-brand judul">E-Sportstation</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px; padding-right: 3.5rem" link>
               <li class="nav-item d-flex align-self-center">
-                <router-link class="nav-link" :to="{ path: '/' }">Beranda</router-link>
+                <router-link class="nav-link" :to="{ path: '/menu' }">Beranda</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/viewteam' }">Team</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/tambahmember' }">Team Member</router-link>
+                <router-link class="nav-link" :to="{ path: '/tambahteam' }">Team</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/tambahtournament' }">Tournament</router-link>
@@ -110,7 +107,7 @@ import axios from 'axios'
             localStorage.removeItem("token");
             localStorage.removeItem("user");
             this.$router.push({
-              name: "login",
+              name: "Home",
             });
           })
           .catch((error) => {
@@ -126,7 +123,7 @@ import axios from 'axios'
   
   <style scoped>
   nav {
-    background-color: #03045e;
+    background-color: #000000;
   }
   a.router-link-exact-active {
     color: white !important;

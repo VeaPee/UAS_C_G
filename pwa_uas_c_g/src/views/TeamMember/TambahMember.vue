@@ -14,7 +14,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn color="brown lighten-1" dark @click="dialog = true"> Tambah </v-btn>
+        <v-btn v-if="TeamMember.length != 4" color="brown lighten-1" dark @click="dialog = true"> Tambah </v-btn>
 
       </v-card-title>
       <v-data-table :headers="headers" :items="TeamMember" :search="search">

@@ -14,7 +14,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="open">Ganti Password</v-btn>
+            <v-btn color="primary" @click="open">Update Profile</v-btn>
           </v-card-actions>
         </v-card>
       </div>
@@ -34,7 +34,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="cancel"> Cancel </v-btn>
-            <v-btn color="blue darken-1" text @click="ganti"> Ganti </v-btn>
+            <v-btn color="blue darken-1" text @click="update"> Ganti </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -74,7 +74,7 @@
     },
     methods: {
       readData() {
-        var url = this.$api + "/user/" + localStorage.getItem("id");
+        var url = this.$api + "/profile/" + localStorage.getItem("id");
         this.$http
           .get(url, {
             headers: {
@@ -89,7 +89,6 @@
           });
       },
       cancel() {
-        this.resetFormPassword();
         this.readData();
         this.dialog = false;
       },
@@ -109,14 +108,14 @@
       open() {
         this.dialog = true;
       },
-      ganti() {
+      update() {
         let newData = {
             name: this.form_new.name,
             email:this.form_new.email,
             nomor_hp:this.form_new.nomor_hp,
             password:this.form_new.password,
         };
-        var url = this.$api + "/user/" + localStorage.getItem("id");
+        var url = this.$api + "/profile/" + localStorage.getItem("id");
         this.load = true;
         this.$http
           .put(url, newData, {

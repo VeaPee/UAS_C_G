@@ -31,22 +31,7 @@
               >Register</v-btn
             >
             
-            <v-spacer></v-spacer>
-            <div class="white--text"
-              >Contact & Our Location</div
-            >
-            
-            
-            <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0981783199277!2d110.41394041534116!3d-7.77941417934165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59f1fb2f2b45%3A0x20986e2fe9c79cdd!2sUniversitas%20Atma%20Jaya%20Yogyakarta%20-%20Kampus%203%20Gedung%20Bonaventura%20Babarsari!5e0!3m2!1sen!2sid!4v1638427863019!5m2!1sen!2sid"
-          width="100%"
-          height="500"
-          frameborder="0"
-          style="border: 0; display: block"
-          allowfullscreen="true"
-          aria-hidden="false"
-          tabindex="0"
-        ></iframe>
+=
         
             
           </div>
@@ -65,28 +50,28 @@ export default {
     return {
       carouselsData: [
         {
-          src: 'https://i.pinimg.com/564x/e1/b2/49/e1b249923026440a60fa45e31d3e357f.jpg',
-          heading: ' Onic Esport ',
+          src: 'https://www.linknet.id//files/photos/shares/images/article/industri-esport-perhatikan-kecepatan-internet.png',
+          heading: ' E-Sporstation ',
           subHeading:
-            'Onic Esport merupakan salah satu tim yang terkuat di Indonesia yang didirikan oleh Rob Clinton Kardinal. Onic Esport juga telah memenangkan beberapa pertandingan diantaranya MPL. ',
+            'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
         },
         {
-          src: 'https://i.pinimg.com/736x/58/d5/41/58d541293dbc77afed3f0ad8e0dfa656.jpg',
-          heading: ' Bigetron Esport',
+          src: 'https://akcdn.detik.net.id/visual/2020/07/20/esport-1_169.jpeg?w=650',
+          heading: ' E-Sporstation ',
           subHeading:
-            'Bigetron Esport merupakan salah satu tim yang terkuat di Indonesia terutama pada bidang PUBG Mobile. Dimana Bigetron Esport ini telah Meraih Penghargaan yang sangat banyak dari pertandingan PUBG Mobile.',
+            'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
         },
         {
-          src: 'https://i.pinimg.com/474x/08/f8/8d/08f88dd7975881b584cb4055c0125599.jpg',
-          heading: ' Evos Esport ',
+          src: 'https://asset-a.grid.id/crop/0x0:0x0/700x0/photo/2022/10/26/dota2_ti11_singapore_suntec_main-20221026050323.jpg',
+          heading: ' E-Sporstation ',
           subHeading:
-            'Evos Esport juga merupakan salah satu tim yang terkuat di Indonesia dalam bidang PUBG Mobile. Evos Esport juga beberapa kali menang dalam pertandingan yang sama dengan Bigetron akan tetapi Bigetron masih tetap yang terkuat.',
+            'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
         },
         {
-          src: 'https://i.pinimg.com/736x/27/a1/80/27a180d92fca54211119b1ca824370ea.jpg',
-          heading: ' Aura Esport ',
+          src: 'https://statik.tempo.co/data/2019/01/28/id_815298/815298_720.jpg',
+          heading: ' E-Sporstation ',
           subHeading:
-            'Aura Esport merupakan salah satu tim Esport yang menciptakan meta-meta yang unik pada permainan Mobile Legend, sehingga dengan menciptakan meta-meta unik hal tersebut membuat para pemain Mobile Legend dari Filipin ingin melawan mereka.'
+            'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton'
         },
       ],
     }
@@ -94,17 +79,17 @@ export default {
   methods: {
     register(){
       this.$router.push({
-          name: "RegisterPage",
+          name: "register",
       });
     },
     login(){
       this.$router.push({
-          name: "LoginPage",
+          name: "login",
       });
     },
     contact(){
       this.$router.push({
-        name: "Contact",
+        name: "aboutus",
       })
     }
   }

@@ -30,16 +30,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/profile', [UserController::class, 'index']);
     Route::get('/profile/{id}', [UserController::class, 'show']);
-    Route::put('/profile', [UserController::class, 'update']);
+    Route::put('/profile/{id}', [UserController::class, 'update']);
 
     Route::get('/user', [AuthController::class, 'user']);
     Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::resource('/team', TeamController::class);
+    Route::get('/team/{id}', [TeamController::class, 'show']);
 
     Route::resource('/teammember', TeamMemberController::class);
 
     Route::resource('/tournament', TournamentController::class);
     
     Route::resource('/transaksi', TicketController::class);
+
 });

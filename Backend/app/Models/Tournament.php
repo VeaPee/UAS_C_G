@@ -15,8 +15,7 @@ class Tournament extends Model
         'nama_tournament',
         'tanggal_tournament',
         'prizepool',
-        'totalTeam',
-        'id_team'
+        'totalTeam'
         ]; 
 
     public function getCreatedAttribute(){

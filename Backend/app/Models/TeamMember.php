@@ -13,13 +13,7 @@ class TeamMember extends Model
     protected $fillable = [
         'member_name',
         'id_game',
-        'id_team',
         ]; 
-    
-    public function team()
-    {
-        return $this->belongsTo(Team::class, 'id_team');
-    }
 
     public function getCreatedAttribute(){
             if(!is_null($this->attributes['created_at'])){

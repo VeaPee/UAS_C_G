@@ -11,12 +11,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $user = User::all();
 
-        if(count($users) > 0){
+        if(count($user) > 0){
             return response([
                 'message' => 'Retrieve All Success',
-                'data' => $users
+                'data' => $user
             ], 200);
         }
 
@@ -28,13 +28,20 @@ class UserController extends Controller
     
     public function update(Request $request, $id)
     {
-        $user = auth()->user();
+        $user = User::find($id);
+
+        if(is_null($user)){
+            return response([
+                'message' => 'User Not Found',
+                'data' => null
+            ],404);
+        }
 
         $data = $request->all();
 
         $validate = Validator::make($data, [
             'name' => 'required|max:60',
-            'email' => 'required|email:rfc,dns|unique:users' . $user->id,
+            'email' => 'required|email:rfc,dns',
             'password' => 'required',
             'nomor_hp' => 'required'
         ]);
@@ -48,11 +55,14 @@ class UserController extends Controller
             ], 400);
         }
     
-        $user['password'] = bcrypt($request->password);
+        $data['password'] = bcrypt($request->password);
 
-        $user = User::find($user->id);
-        $user->update($data);
-        $user->save();
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $data['password'],
+            'nomor_hp' => $request->nomor_hp
+        ]);
 
         return response()->json([
             'success' => true,

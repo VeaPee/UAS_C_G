@@ -45,5 +45,10 @@ export default {
         loading: false,
         selection: 1,
     }),
+    methods: {
+        reserve(){
+            this.$router.push('/transaksitiket')
+        }
+    }
 };
 </script>

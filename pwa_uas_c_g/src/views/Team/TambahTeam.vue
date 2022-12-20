@@ -1,6 +1,6 @@
   <template>
     <v-main class="team" >
-      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#3C2317">Buat Tim</h3>
+      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#3C2317">Buat Team</h3>
   
       <v-card>
         <v-card-title>
@@ -69,6 +69,12 @@
         </v-card>
       </v-dialog>
   
+      <v-card v-if="Teams.length != 0">
+        <v-card-title>
+          <v-btn color="brown lighten-1" dark @click="rute"> Tambah Member</v-btn>
+        </v-card-title>
+      </v-card>
+
          <v-snackbar v-model="snackbar" :color="color" timeout="2000" bottom>{{ error_message }} </v-snackbar>
   
     </v-main>
@@ -241,6 +247,9 @@
           analis: null,
         };
       },
+      rute(){
+        this.$router.push('/TambahMember')
+      }
     },
     computed: {
       formTitle() {

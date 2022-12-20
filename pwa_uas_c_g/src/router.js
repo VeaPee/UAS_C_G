@@ -9,9 +9,9 @@ const router = new VueRouter({
     routes:[
         {
           path: "/",
-          name: "Root",
-          component: () => import("@/views/DashboardIndex.vue"),
-          meta: {title: "Dashbooard"},
+          name: "Home",
+          component: () => import("@/components/HomePage.vue"),
+          meta: {title: "Home"},
         },
         {
           path: "/register",
@@ -84,12 +84,6 @@ const router = new VueRouter({
                   name: "Profile",
                   meta: {title: "Profile"},
                 },
-                {
-                  path: "/viewteam",
-                  component: () => import("@/views/Team/TambahTeam.vue"),
-                  name: "ViewTeam",
-                  meta: {title: "viewteam"},
-                },
           ],
         },
     
@@ -97,9 +91,9 @@ const router = new VueRouter({
     });
 
   router.beforeEach((to, from, next) => {
-    if(to.name != "login" && localStorage.getItem("token") == null && to.name!="register" && to.name != "Root"){
+    if(to.name != "login" && localStorage.getItem("token") == null && to.name!="register" && to.name != "Home"){
         next('/')
-        document.to.meta.title = "Dashboard"
+        document.to.meta.title = "Menu"
     }
     
     document.title = to.meta.title;

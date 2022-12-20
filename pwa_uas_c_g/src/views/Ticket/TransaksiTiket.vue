@@ -17,7 +17,7 @@
           <v-btn color="brown lighten-1" dark @click="dialog = true"> Tambah </v-btn>
   
         </v-card-title>
-        <v-data-table :headers="headers" :items="Teams" :search="search">
+        <v-data-table :headers="headers" :items="tickets" :search="search">
   
             <template v-slot:[`item.actions`]="{item}">
                   <v-btn icon small class="mr-2" @click="editHandler(item)">
@@ -38,14 +38,14 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-text-field readonly v-model="form.namaTournament" label="Nama Tournament" required></v-text-field>
+              <v-text-field readonly v-model="form.namaTournament" value="form.namaTournament" label="Nama Tournament" required></v-text-field>
               <v-select 
                   v-model="form.jenisTicket" 
                   @change="harga" :items="['VVIP', 'VIP', 'Economy']" 
                   label="Jenis Ticket" 
                   required>
               </v-select>
-              <v-text-field readonly v-model="form.hargaTicket" label="Harga Ticket" required></v-text-field>
+              <v-text-field prefix="Rp " readonly v-model="form.hargaTicket" label="Harga Ticket" required></v-text-field>
               <v-text-field v-model="form.tempatDuduk" label="Tempat Duduk" required></v-text-field>
             </v-container>
           </v-card-text>
@@ -94,8 +94,9 @@
         dialog: false,
         dialogConfirm: false,
         headers: [
-          { text: "Jenis Ticket", align: "start", sortable: true, value: "jenisTicket"},
-          { text: "Nama Tournament", value: 'namaTournament'},
+          { text: "Nama Tournament", value: 'namaTournament', align: "start", sortable: true},
+          { text: "Jenis Ticket", value: "jenisTicket"},
+          
           { text: "Harga Ticket", value: 'hargaTicket'},
           { text: "Tempat Duduk", value: 'tempatDuduk'},
           { text: "Actions", value: 'actions'},

@@ -16,11 +16,7 @@ class Team extends Model
         'pelatih',
         'analis',
         ]; 
-    
-    
-    public function teamMember(){
-        return $this->hasMany(TeamMember::class,'id_team');
-    }   
+     
 
     public function getCreatedAttribute(){
         if(!is_null($this->attributes['created_at'])){
