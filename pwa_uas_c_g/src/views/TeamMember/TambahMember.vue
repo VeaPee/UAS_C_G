@@ -111,7 +111,7 @@ export default {
       }
     },
     readData(){
-      var url = this.$api + '/team_members';
+      var url = this.$api + '/teammember';
       this.$http.get(url, {
         headers: {
           'Authorization' : 'Bearer ' + localStorage.getItem('token')
@@ -123,7 +123,7 @@ export default {
     save(){
       this.team_member.append('member_name',this.form.member_name);
       this.team_member.append('id_game',this.form.id_game);
-      var url= this.$api + '/team_members'
+      var url= this.$api + '/teammember'
       this.load = true;
       this.$http.post(url, this.team_member, {
         headers: {
@@ -149,7 +149,7 @@ export default {
         member_name : this.form.member_name,
         id_game: this.form.id_game,
       };
-      var url = this.$api + '/team_members/' + this.editId;
+      var url = this.$api + '/teammember/' + this.editId;
       this.load = true;
       this.$http.put(url, newData, {
         headers: {
@@ -173,7 +173,7 @@ export default {
     },
     deleteData() {
       //mengahapus data
-      var url = this.$api + '/team_members/' + this.deleteId;
+      var url = this.$api + '/teammember/' + this.deleteId;
       //data dihapus berdasarkan id
       this.$http.delete(url, {
           headers: {

@@ -5,34 +5,31 @@
           <h2 class="text-center " style="font-weight: 1000;">DAFTAR</h2>
           <v-text-field 
             label="Name" 
-            v-model="user.name" 
-            placeholder="Masukkan Nama" 
-            :error-messages="errors.name" 
+            v-model="name" 
+            placeholder="Masukkan Nama"
             outlined>
           </v-text-field>
 
           <v-text-field 
+            type="email"
             label="Email" 
-            v-model="user.email" 
+            v-model="email" 
             placeholder="Masukkan Email" 
-            :error-messages="errors.email" 
             outlined>
           </v-text-field>
 
           <v-text-field 
+            type = "number"
             label="Nomor HP" 
-            v-model="user.nomor_hp" 
+            v-model="nomor_hp" 
             placeholder="Masukkan Nomor HP" 
-            :error-messages="errors.nomor_hp" 
             outlined>
           </v-text-field>
 
           <v-text-field 
             label="Password" 
-            type="password" 
-            v-model="user.password" 
+            v-model="password" 
             placeholder="Masukkan Password" 
-            :error-messages="errors.password" 
             outlined>
           </v-text-field>
           
@@ -47,22 +44,28 @@
   export default {
     name: 'RegisterPage',
   
-    data: () => ({
+    data() {
+    return {
       load: false,
       snackbar: false,
-      user: {
-        name: '',
-        nomor_hp: '',
-        email: '',
-        password: ''
-      },
-      errors: {},
-    }),
+      error_message: '',
+      color: '',
+      name: '',
+      nomor_hp: '',
+      password: '',
+      email: "",
+    };
+  },
   
     methods: {
       register() {
         this.load = true
-        this.$http.post(this.$api + "register", JSON.stringify(this.user))
+        this.$http.post(this.$api + "/register", {
+            name: this.name,
+            nomor_hp: this.nomor_hp,
+            email: this.email,
+            password: this.password,
+          })
           .then(response => {
             this.error_message = response.data.message;
             this.color = "green";

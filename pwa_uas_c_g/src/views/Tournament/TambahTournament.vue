@@ -117,7 +117,7 @@
         }
       },
       readData(){
-        var url = this.$api + '/tournaments';
+        var url = this.$api + '/tournament';
         this.$http.get(url, {
           headers: {
             'Authorization' : 'Bearer ' + localStorage.getItem('token')
@@ -159,7 +159,7 @@
           prizepool : this.form.prizepool,
           totalTeam: this.form.totalTeam,
         };
-        var url = this.$api + '/tournaments/' + this.editId;
+        var url = this.$api + '/tournament/' + this.editId;
         this.load = true;
         this.$http.put(url, newData, {
           headers: {
@@ -183,7 +183,7 @@
       },
       deleteData() {
         //mengahapus data
-        var url = this.$api + '/teams/' + this.deleteId;
+        var url = this.$api + '/tournament/' + this.deleteId;
         //data dihapus berdasarkan id
         this.$http.delete(url, {
             headers: {

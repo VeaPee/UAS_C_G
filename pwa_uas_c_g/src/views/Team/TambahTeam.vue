@@ -117,7 +117,7 @@
         }
       },
       readData(){
-        var url = this.$api + '/teams';
+        var url = this.$api + '/team';
         this.$http.get(url, {
           headers: {
             'Authorization' : 'Bearer ' + localStorage.getItem('token')
@@ -131,7 +131,7 @@
         this.team.append('kota',this.form.kota);
         this.team.append('pelatih',this.form.pelatih);
         this.team.append('analis',this.form.analis);
-        var url= this.$api + '/teams'
+        var url= this.$api + '/team'
         this.load = true;
         this.$http.post(url, this.team, {
           headers: {
@@ -159,7 +159,7 @@
           pelatih : this.form.pelatih,
           analis: this.form.analis,
         };
-        var url = this.$api + '/teams/' + this.editId;
+        var url = this.$api + '/team/' + this.editId;
         this.load = true;
         this.$http.put(url, newData, {
           headers: {
@@ -183,7 +183,7 @@
       },
       deleteData() {
         //mengahapus data
-        var url = this.$api + '/teams/' + this.deleteId;
+        var url = this.$api + '/team/' + this.deleteId;
         //data dihapus berdasarkan id
         this.$http.delete(url, {
             headers: {
