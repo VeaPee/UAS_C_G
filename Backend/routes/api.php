@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('/team', TeamController::class);
 
+    Route::resource('/teammember', TeamMemberController::class);
+    Route::get('/teammember/{id}', [TeamMemberController::class, 'teammember']);
     Route::resource('/tournament', TournamentController::class);
 
     Route::resource('/transaksi', TicketController::class);

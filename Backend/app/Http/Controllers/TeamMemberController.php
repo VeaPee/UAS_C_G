@@ -33,7 +33,7 @@ class TeamMemberController extends Controller
         $validator = Validator::make($request->all(), [
             'member_name' => 'required',
             'id_game' => 'required|numeric|digits:10',
-            'id_team' => 'required|numeric|digits:7',
+            'id_team' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -66,7 +66,7 @@ class TeamMemberController extends Controller
         $validator = Validator::make($request->all(),[
             'member_name' => 'required',
             'id_game' => 'required|numeric|digits:10',
-            'id_team' => 'required|numeric|digits:7',
+            'id_team' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);

@@ -53,17 +53,18 @@
   </style>
   
   <script>
+
+import axios from 'axios'
   export default {
-    name: "TransaksiTiket",
+    name: "TransaksiTeam",
     data() {
       return {
         load: false,
         snackbar: false,
         error_message: "",
         color: "",
-        order: new FormData(),
-        orders: [],
-        promo: [],
+        team: new FormData(),
+        teams: [],
         form: {
           nama_tim: null,
           kota: null,
@@ -75,16 +76,14 @@
     },
     methods: {
       save() {
-        if (localStorage.getItem("user") == null) {
+        if (localStorage.getItem("token") == null) {
           this.error_message = "Anda Harus Login Terlebih Dahulu Sebelum Bisa Membuat Team!";
           this.color = "red";
           this.snackbar = true;
           this.load = false;
         } else {
-          this.$http
-            .post(
-              this.$api + "/team",
-              {
+          
+          axios.post('http://127.0.0.1:8000/api/team/', this.user,{  
                 nama_tim: this.form.nama_tim,
                 kota: this.form.kota,
                 pelatih: this.form.pelatih,
@@ -94,8 +93,7 @@
                 headers: {
                   Authorization: "Bearer " + localStorage.getItem("token"),
                 },
-              }
-            )
+              })
             .then((response) => {
               this.error_message = response.data.message;
               this.color = "green";

@@ -51,9 +51,9 @@ export default {
           'Content-Type': 'application/json'
         }
       })
-        .then((res) => {
+        .then((response) => {
           this.isLoading = false
-          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('token', response.data.token);
           this.$router.push('/')
         })
         .catch((err) => {
