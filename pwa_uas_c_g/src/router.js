@@ -48,21 +48,21 @@ const router = new VueRouter({
                 {
                   path: "/tambahtournament",
                   component: () => import("@/views/Tournament/TambahTournament.vue"),
-                  name: "TambahTournament",
+                  name: "TournamnetPage",
                   meta: {title: "TambahTournament"},
                 },
-                {
-                  path: "/teammember",
-                  component: () => import("@/views/TeamMember/TeamMember.vue"),
-                  name: "TeamMember",
-                  meta: {title: "TeamMember"},
-                },
-                {
-                  path: "/tournament",
-                  component: () => import("@/views/Tournament/TournamentPage.vue"),
-                  name: "Tournament",
-                  meta: {title: "Tournament"},
-                },
+                // {
+                //   path: "/teammember",
+                //   component: () => import("@/views/TeamMember/TeamMember.vue"),
+                //   name: "TeamMember",
+                //   meta: {title: "TeamMember"},
+                // },
+                // {
+                //   path: "/tournament",
+                //   component: () => import("@/views/Tournament/TournamentPage.vue"),
+                //   name: "Tournament",
+                //   meta: {title: "Tournament"},
+                // },
                 {
                   path: "/transaksitiket",
                   component: () => import("@/views/Ticket/TransaksiTiket.vue"),
@@ -77,8 +77,8 @@ const router = new VueRouter({
                 },
                 {
                   path: "/viewteam",
-                  component: () => import("@/views/Team/ViewTeam.vue"),
-                  name: "viewteam",
+                  component: () => import("@/views/Team/TambahTeam.vue"),
+                  name: "ViewTeam",
                   meta: {title: "viewteam"},
                 },
           ]

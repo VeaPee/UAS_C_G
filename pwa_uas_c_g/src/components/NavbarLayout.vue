@@ -16,10 +16,10 @@
                 <router-link class="nav-link" :to="{ path: '/viewteam' }">Team</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/TeamMember' }">Team Member</router-link>
+                <router-link class="nav-link" :to="{ path: '/tambahmember' }">Team Member</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/tournament' }">Tournament</router-link>
+                <router-link class="nav-link" :to="{ path: '/tambahtournament' }">Tournament</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/transaksitiket' }">Transaksi Tiket</router-link>
