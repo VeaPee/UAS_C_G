@@ -32,21 +32,6 @@
             >
             
             <v-spacer></v-spacer>
-            <div class="white--text"
-              >Contact & Our Location</div
-            >
-            
-            
-            <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0981783199277!2d110.41394041534116!3d-7.77941417934165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59f1fb2f2b45%3A0x20986e2fe9c79cdd!2sUniversitas%20Atma%20Jaya%20Yogyakarta%20-%20Kampus%203%20Gedung%20Bonaventura%20Babarsari!5e0!3m2!1sen!2sid!4v1638427863019!5m2!1sen!2sid"
-          width="100%"
-          height="500"
-          frameborder="0"
-          style="border: 0; display: block"
-          allowfullscreen="true"
-          aria-hidden="false"
-          tabindex="0"
-        ></iframe>
         
             
           </div>
@@ -66,25 +51,25 @@ export default {
       carouselsData: [
         {
           src: 'https://www.linknet.id//files/photos/shares/images/article/industri-esport-perhatikan-kecepatan-internet.png',
-          heading: ' Perpustakaan Kita ',
+          heading: ' E-Sporstation ',
           subHeading:
             'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
         },
         {
           src: 'https://akcdn.detik.net.id/visual/2021/06/24/seoul-book-repository_169.jpeg?w=650',
-          heading: ' Perpustakaan Kita',
+          heading: ' E-Sporstation',
           subHeading:
           'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
         },
         {
           src: 'https://www.gramedia.com/blog/content/images/2018/11/perpustakaan.jpg',
-          heading: ' Perpustakaan Kita ',
+          heading: ' E-Sporstation ',
           subHeading:
           'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
         },
         {
           src: 'https://statik.tempo.co/data/2021/02/08/id_999015/999015_720.jpg',
-          heading: ' Perpustakaan Kita ',
+          heading: ' E-Sporstation ',
           subHeading:
           'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
         },
