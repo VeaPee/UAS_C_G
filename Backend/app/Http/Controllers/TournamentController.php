@@ -31,10 +31,9 @@ class TournamentController extends Controller
         //Validasi Formulir
         $validator = Validator::make($request->all(), [
             'nama_tournament' => 'required',
-            'tanggal_tournament' => 'required|date_format:Y-m-d',
+            'tanggal_tournament' => 'required',
             'prizepool' => 'required',
-            'totalTeam' => 'required',
-            'id_team' => 'required|numeric|digits:7'
+            'totalTeam' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -44,8 +43,7 @@ class TournamentController extends Controller
             'nama_tournament' => $request->nama_tournament,
             'tanggal_tournament' => $request->tanggal_tournament,
             'prizepool' => $request->prizepool,
-            'totalTeam' => $request->totalTeam,
-            'id_team' => $request->id_team
+            'totalTeam' => $request->totalTeam
         ]);
         return new TournamentResource(true, 'Data tournament Berhasil Ditambahkan!', $tournament);
     }
@@ -55,10 +53,9 @@ class TournamentController extends Controller
         //set validation
         $validator = Validator::make($request->all(), [
             'nama_tournament' => 'required',
-            'tanggal_tournament' => 'required|date_format:Y-m-d',
+            'tanggal_tournament' => 'required',
             'prizepool' => 'required',
-            'totalTeam' => 'required',
-            'id_team' => 'required|numeric|digits:7'
+            'totalTeam' => 'required'
         ]);
         
         //response error validation
@@ -76,8 +73,7 @@ class TournamentController extends Controller
                 'nama_tournament' => $request->nama_tournament,
                 'tanggal_tournament' => $request->tanggal_tournament,
                 'prizepool' => $request->prizepool,
-                'totalTeam' => $request->totalTeam,
-                'id_team' => $request->id_team
+                'totalTeam' => $request->totalTeam
             ]);
 
             return new TournamentResource(true, 'Data tournament Berhasil Diubah!', $tournament);

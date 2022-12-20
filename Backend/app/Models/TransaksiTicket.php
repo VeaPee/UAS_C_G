@@ -13,8 +13,7 @@ class TransaksiTicket extends Model
     protected $fillable = [
         'hargaTicket',
         'tempatDuduk',
-        'jenisTicket',
-        'statusPembayaran'
+        'jenisTicket'
         ]; 
         
     public function getCreatedAttribute(){

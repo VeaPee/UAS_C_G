@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('hargaTicket');
             $table->String('tempatDuduk');
             $table->String('jenisTicket');
-            $table->boolean('statusPembayaran');
             $table->timestamps();
         });
     }

@@ -19,9 +19,6 @@ return new class extends Migration
             $table->string('tanggal_tournament');
             $table->integer('prizepool');
             $table->integer('totalTeam');
-            $table->integer('biayaRegistrasi');
-            $table->unsignedBigInteger('id_team');
-            $table->foreign('id_team')->references('id')->on('teams');
             $table->timestamps();
         });
     }

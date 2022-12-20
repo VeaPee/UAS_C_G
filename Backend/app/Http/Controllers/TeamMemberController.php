@@ -32,8 +32,7 @@ class TeamMemberController extends Controller
         //Validasi Formulir
         $validator = Validator::make($request->all(), [
             'member_name' => 'required',
-            'id_game' => 'required|numeric|digits:10',
-            'id_team' => 'required',
+            'id_game' => 'required|numeric'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -42,8 +41,7 @@ class TeamMemberController extends Controller
 
         $teamMember = TeamMember::create([
             'member_name' => $request -> member_name,
-            'id_game' => $request -> id_game,
-            'id_team' => $team-> id,
+            'id_game' => $request -> id_game
         ]);
         return new TeamMemberResource(true, "Data Team Member Berhasil Ditambahkan!", $teamMember);
     }
@@ -65,8 +63,7 @@ class TeamMemberController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'member_name' => 'required',
-            'id_game' => 'required|numeric|digits:10',
-            'id_team' => 'required',
+            'id_game' => 'required|numeric',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -75,8 +72,7 @@ class TeamMemberController extends Controller
         $team = Team::where('member_name', $request->id_team) -> first();
         $teamMember->update([
             'member_name' => $request->member_name,
-            'id_game' => $request->id_game,
-            'id_team'=> $team->id
+            'id_game' => $request->id_game
         ]);
         return new TeamMemberResource(true, "Data Team Member Berhasil Diubah!", $teamMember);
     }
