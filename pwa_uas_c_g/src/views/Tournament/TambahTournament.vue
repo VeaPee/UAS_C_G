@@ -131,7 +131,7 @@
         this.tournament.append('tanggal_tournament',this.form.tanggal_tournament);
         this.tournament.append('prizepool',this.form.prizepool);
         this.tournament.append('totalTeam',this.form.totalTeam);
-        var url= this.$api + '/tournaments'
+        var url= this.$api + '/tournament'
         this.load = true;
         this.$http.post(url, this.tournament, {
           headers: {

@@ -34,12 +34,12 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card color="brown lighten-5">
         <v-card-title>
-          <span class="headline">{{formTitle}} teammember</span>
+          <span class="headline">{{formTitle}} Team Member</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-text-field v-model="form.member_name" label="Member Name" required></v-text-field>
-            <v-text-field v-model="form.id_game" label="ID Game" required></v-text-field>
+            <v-text-field type="number" v-model="form.id_game" label="ID Game" required></v-text-field>
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -186,7 +186,7 @@ export default {
           this.snackbar = true;
           this.load = false;
           this.close();
-          this.readData(); //mengambil data
+          this.readData();
           this.resetForm();
           this.inputType = "Tambah";
         })

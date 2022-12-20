@@ -53,13 +53,12 @@ export default {
           })
         .then((response) => {
               this.isLoading = false;
-              this.token = response.data.token;
-              this.user = response.data.data;
+              localStorage.setItem("id", response.data.data.id);
               localStorage.setItem("token", response.data.token);
               this.error_message = response.data.message;
               this.color = "green";
               this.snackbar = true;
-              this.$router.push('/')
+              this.$router.push('/menu')
           
         })
         .catch((error) => {

@@ -1,50 +1,126 @@
-
 <template>
-    <v-main>
-        <h1 class="text font-weight-medium mb-5 text-center">List Tournament</h1>
-
-        <v-item-group>
-            <v-container>
-                <v-row>
-                    <v-col v-for="n in 3" :key="n" cols="12" md="4">
-                        <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-                            <v-img
-                            height="250"
-                            src="https://pict.sindonews.net/dyn/850/pena/news/2022/06/07/11/790973/piala-presiden-2022-segera-digelar-ini-jadwal-dari-fase-grup-hingga-final-ath.jpg"
-                            ></v-img>
-
-                            <v-card-title class="d-flex justify-content-center"><strong>Tournament </strong></v-card-title>
-
-                            <v-card-text>
-                                <div class="my-4 text-subtitle-1">
-                                    Tournament Nasional untuk game PUBG
-                                    Daftarkan diri anda sekarang juga!!.
-                                </div>
-                            </v-card-text>
-
-                            <v-divider class="mx-4"></v-divider>
-                            <v-card-actions>
-                                <v-btn color="deep-purple lighten-2" text @click="reserve">
-                                Choose
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-item-group>
-    </v-main>
+  
+    <v-carousel
+      height="100vh"
+      dark
+      cycle
+      show-arrows-on-hover
+      draggable="true"
+      hide-delimiter-background
+    >
+      <v-carousel-item
+        v-for="(carousel, carindex) in carouselsData"
+        :key="carindex"
+        :src="carousel.src"
+        class="gradient-fill"
+      >
+        <v-container fill-height>
+          <div style="max-width: 900px">
+            
+            <div class="text-md-h2 mb-3 text-sm-h3 text-h5 font-weight-black white--text">
+              {{ carousel.heading.toUpperCase() }}
+            </div>
+            
+            <p class="mb-5 white--text">{{ carousel.subHeading }}</p>
+            
+            <v-btn @click="login" :x-large="$vuetify.breakpoint.smAndUp" class="my-3 primary"
+              >Login</v-btn
+            >
+            <span class="mx-2 my-4"></span>
+            <v-btn @click="register" :x-large="$vuetify.breakpoint.smAndUp" class="my-3 orange white--text"
+              >Register</v-btn
+            >
+            
+            <v-spacer></v-spacer>
+            <div class="white--text"
+              >Contact & Our Location</div
+            >
+            
+            
+            <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0981783199277!2d110.41394041534116!3d-7.77941417934165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59f1fb2f2b45%3A0x20986e2fe9c79cdd!2sUniversitas%20Atma%20Jaya%20Yogyakarta%20-%20Kampus%203%20Gedung%20Bonaventura%20Babarsari!5e0!3m2!1sen!2sid!4v1638427863019!5m2!1sen!2sid"
+          width="100%"
+          height="500"
+          frameborder="0"
+          style="border: 0; display: block"
+          allowfullscreen="true"
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+        
+            
+          </div>
+        </v-container>
+      </v-carousel-item>
+      
+    </v-carousel>
+    
+ 
 </template>
-<style>
-.text {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
-</style>
+
+
 <script>
 export default {
-    data: () => ({
-        loading: false,
-        selection: 1,
-    }),
-};
+  data() {
+    return {
+      carouselsData: [
+        {
+          src: 'https://www.linknet.id//files/photos/shares/images/article/industri-esport-perhatikan-kecepatan-internet.png',
+          heading: ' Perpustakaan Kita ',
+          subHeading:
+            'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
+        },
+        {
+          src: 'https://akcdn.detik.net.id/visual/2021/06/24/seoul-book-repository_169.jpeg?w=650',
+          heading: ' Perpustakaan Kita',
+          subHeading:
+          'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
+        },
+        {
+          src: 'https://www.gramedia.com/blog/content/images/2018/11/perpustakaan.jpg',
+          heading: ' Perpustakaan Kita ',
+          subHeading:
+          'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
+        },
+        {
+          src: 'https://statik.tempo.co/data/2021/02/08/id_999015/999015_720.jpg',
+          heading: ' Perpustakaan Kita ',
+          subHeading:
+          'Komunitas E-Sport Indonesia untuk membuat Team, Tournament dan membeli Ticket Nonton',
+        },
+      ],
+    }
+  },
+  methods: {
+    register(){
+      this.$router.push({
+          name: "register",
+      });
+    },
+    login(){
+      this.$router.push({
+          name: "login",
+      });
+    },
+    contact(){
+      this.$router.push({
+        name: "aboutus",
+      })
+    }
+  }
+  }
 </script>
+
+<style>
+.gradient-fill .v-responsive__content {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    to right,
+    rgba(3, 12, 41, 0.75),
+    rgba(5, 11, 31, 0.65)
+  );
+}
+.carousel-item img {
+        height:100vh!important ;
+    }
+</style>

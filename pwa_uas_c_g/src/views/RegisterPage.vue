@@ -7,6 +7,7 @@
             label="Name" 
             v-model="name" 
             placeholder="Masukkan Nama"
+            :rules="nameRules"
             outlined>
           </v-text-field>
 
@@ -15,6 +16,7 @@
             label="Email" 
             v-model="email" 
             placeholder="Masukkan Email" 
+            :rules="emailRules"
             outlined>
           </v-text-field>
 
@@ -23,6 +25,7 @@
             label="Nomor HP" 
             v-model="nomor_hp" 
             placeholder="Masukkan Nomor HP" 
+            :rules="nomorRules"
             outlined>
           </v-text-field>
 
@@ -30,6 +33,7 @@
             label="Password" 
             v-model="password" 
             placeholder="Masukkan Password" 
+            :rules="passwordRules"
             outlined>
           </v-text-field>
           
@@ -51,9 +55,22 @@
       error_message: '',
       color: '',
       name: '',
+      nameRules: [
+                (v) => !!v || "Harap isi Name terlebih dahulu",
+      ],
       nomor_hp: '',
+      nomorRules: [
+                (v) => !!v || "Harap isi Nomor HP terlebih dahulu",
+      ],
       password: '',
+      passwordRules: [
+                (v) => !!v || "Harap isi Password terlebih dahulu",
+      ],
       email: "",
+      emailRules: [
+                (v) => !!v || "Harap isi E-mail terlebih dahulu",
+      ],
+      
     };
   },
   

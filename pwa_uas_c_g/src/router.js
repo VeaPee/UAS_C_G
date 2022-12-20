@@ -7,52 +7,58 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes:[
-      {
+        {
+          path: "/",
+          name: "Root",
+          component: () => import("@/views/DashboardIndex.vue"),
+          meta: {title: "Dashbooard"},
+        },
+        {
+          path: "/register",
+          name: "register",
+          component: () => import("@/views/RegisterPage.vue"),
+          meta: {title: "Register"},
+        },
+        {
+          path: "/login",
+          name: "login",
+          component: () => import("@/views/LoginPage.vue"),
+          meta: {title: "Login"},
+        },
+        {
           path: "/",
           name: "beranda",
           component: () => import("@/components/NavbarLayout.vue"),
           children: [
                 {
-                  path: "/",
-                  name: "Root",
-                  component: () => import("@/views/DashboardIndex.vue"),
-                  meta: {title: "Dashbooard"},
-                },
-                {
-                  path: "/register",
-                  name: "register",
-                  component: () => import("@/views/RegisterPage.vue"),
-                  meta: {title: "Register"},
-                },
-                {
-                  path: "/login",
-                  name: "login",
-                  component: () => import("@/views/LoginPage.vue"),
-                  meta: {title: "Login"},
+                  path: "/Menu",
+                  name: "Menu",
+                  component: () => import("@/views/MainMenu.vue"),
+                  meta: {title: "Menu"},
                 },
                 {
                   path: "/aboutus",
                   component: () => import("@/views/AboutUs.vue"),
                   name: "TentangKami",
-                  meta: { title: "TentangKami" },
+                  meta: { title: "About" },
                 },
                 {
                   path: "/tambahteam",
                   component: () => import("@/views/Team/TambahTeam.vue"),
                   name: "TambahTeam",
-                  meta: {title: "TambahTeam"},
+                  meta: {title: "Team"},
                 },
                 {
                   path: "/tambahmember",
                   component: () => import("@/views/TeamMember/TambahMember.vue"),
                   name: "TambahMember",
-                  meta: {title: "TambahMember"},
+                  meta: {title: "Member Team"},
                 },
                 {
                   path: "/tambahtournament",
                   component: () => import("@/views/Tournament/TambahTournament.vue"),
-                  name: "TournamnetPage",
-                  meta: {title: "TambahTournament"},
+                  name: "TournamentPage",
+                  meta: {title: "Tournament"},
                 },
                 // {
                 //   path: "/teammember",
@@ -84,10 +90,11 @@ const router = new VueRouter({
                   name: "ViewTeam",
                   meta: {title: "viewteam"},
                 },
-          ]
-      }
-    ]
-  });
+          ],
+        },
+    
+      ]
+    });
 
   router.beforeEach((to, from, next) => {
     if(to.name != "login" && localStorage.getItem("token") == null && to.name!="register" && to.name != "Root"){
@@ -97,6 +104,6 @@ const router = new VueRouter({
     
     document.title = to.meta.title;
     next();
-});
+  });
 
 export default router;

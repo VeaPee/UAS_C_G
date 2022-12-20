@@ -63,6 +63,7 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
+        $user = Auth::user();
 
         if (!$user->hasVerifiedEmail()) {
             return response()->json([

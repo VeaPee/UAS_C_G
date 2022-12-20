@@ -28,8 +28,8 @@ Route::get('email/resend', [VerifyController::class, 'resend'])->name('verificat
 /* New Added Routes */
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::get('/profile', [UserController::class, 'show']);
-
+    Route::get('/profile', [UserController::class, 'index']);
+    Route::get('/profile/{id}', [UserController::class, 'show']);
     Route::put('/profile', [UserController::class, 'update']);
 
     Route::get('/user', [AuthController::class, 'user']);
@@ -38,8 +38,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/team', TeamController::class);
 
     Route::resource('/teammember', TeamMemberController::class);
-    Route::get('/teammember/{id}', [TeamMemberController::class, 'teammember']);
-    Route::resource('/tournament', TournamentController::class);
 
+    Route::resource('/tournament', TournamentController::class);
+    
     Route::resource('/transaksi', TicketController::class);
 });
