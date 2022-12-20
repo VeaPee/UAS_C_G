@@ -1,6 +1,6 @@
   <template>
     <v-main class="team" >
-      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#3C2317">Buat Team</h3>
+      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#000000">Buat Team</h3>
   
       <v-card>
         <v-card-title>
@@ -14,7 +14,7 @@
   
           <v-spacer></v-spacer>
   
-          <v-btn color="brown lighten-1" dark @click="dialog = true"> Tambah </v-btn>
+          <v-btn v-if="Teams.length == 0" color="black" dark @click="dialog = true"> Tambah </v-btn>
   
         </v-card-title>
         <v-data-table :headers="headers" :items="Teams" :search="search">
@@ -32,7 +32,7 @@
       </v-card>
   
       <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-card color="brown lighten-5">
+        <v-card color="white">
           <v-card-title>
             <span class="headline">{{formTitle}} team</span>
           </v-card-title>
@@ -54,14 +54,13 @@
   
   
       <v-dialog v-model="dialogConfirm" persistent max-width="400px">
-        <v-card color="brown lighten-5">
+        <v-card color="white">
           <v-card-title>
-            <span class="headline">WARNING !</span>
+            <span class="headline">Ingin Menghapus Team ?</span>
           </v-card-title>
-          <v-card-text> Ingin Menghapus Team ? </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="brown darken-1" text @click="dialogConfirm = false">
+            <v-btn color="black" text @click="dialogConfirm = false">
               Cancel
             </v-btn>
             <v-btn color="red darken-1" text @click="deleteData"> Delete </v-btn>
@@ -71,7 +70,7 @@
   
       <v-card v-if="Teams.length != 0">
         <v-card-title>
-          <v-btn color="brown lighten-1" dark @click="rute"> Tambah Member</v-btn>
+          <v-btn color="black" dark @click="rute"> Tambah Member</v-btn>
         </v-card-title>
       </v-card>
 
@@ -86,7 +85,7 @@
     name: "ViewTeam",
     data() {
       return {
-        inputType: 'Tambah',
+        type: 'Tambah',
         load: false,
         snackbar: false,
         error_message: '',
@@ -103,6 +102,7 @@
         ],
         team: new FormData,
         Teams: [],
+        TeamMember: [],
         form:{
           nama_tim: null,
           kota: null,
@@ -115,7 +115,7 @@
     },
     methods: {
       setForm(){
-        if(this.inputType !== 'Tambah'){
+        if(this.type !== 'Tambah'){
           this.update();
         }
         else{
@@ -159,7 +159,7 @@
         });
       },
       update(){
-        let newData = {
+        let update = {
           nama_tim : this.form.nama_tim,
           kota : this.form.kota,
           pelatih : this.form.pelatih,
@@ -167,7 +167,7 @@
         };
         var url = this.$api + '/team/' + this.editId;
         this.load = true;
-        this.$http.put(url, newData, {
+        this.$http.put(url, update, {
           headers: {
             'Authorization' : 'Bearer ' + localStorage.getItem('token')
           }
@@ -179,7 +179,7 @@
           this.close();
           this.readData();
           this.resetForm();
-          this.inputType = 'Tambah';
+          this.type = 'Tambah';
         }).catch(error => {
           this.error_message = error.response.data.message;
           this.color = 'red';
@@ -204,7 +204,7 @@
             this.close();
             this.readData(); //mengambil data
             this.resetForm();
-            this.inputType = "Tambah";
+            this.type = "Tambah";
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
@@ -214,7 +214,7 @@
           });
       },
       editHandler(item){
-        this.inputType = 'Ubah';
+        this.type = 'Ubah';
         this.editId = item.id;
         this.form.nama_tim = item.nama_tim;
         this.form.kota = item.kota;
@@ -228,7 +228,7 @@
       },
       close() {
         this.dialog = false;
-        this.inputType = "Tambah";
+        this.type = "Tambah";
         this.dialogConfirm = false;
         this.readData();
       },
@@ -237,7 +237,7 @@
         this.readData();
         this.dialog = false;
         this.dialogConfirm = false;
-        this.inputType = "Tambah";
+        this.type = "Tambah";
       },
       resetForm() {
         this.form = {
@@ -253,7 +253,7 @@
     },
     computed: {
       formTitle() {
-        return this.inputType;
+        return this.type;
       },
     },
     mounted() {

@@ -46,8 +46,13 @@ class TicketController extends Controller
         return new TicketResource(true, 'Data ticket Berhasil Ditambahkan!', $ticket);
     }
 
-    public function update(Request $request, TransaksiTicket $ticket)
+    public function update(Request $request, $id)
     {
+        $ticket = TransaksiTicket::find($id);
+
+        if(is_null($ticket)){
+            return response(['message' => 'Data Not Found'], 404);
+        }
         //set validation
         $validator = Validator::make($request->all(), [
             'namaTournament' => 'required',
@@ -62,8 +67,6 @@ class TicketController extends Controller
         }
 
         //find ticket by ID
-        $ticket = TransaksiTicket::findOrFail($ticket->id);
-
         if($ticket) {
 
             //ticket post

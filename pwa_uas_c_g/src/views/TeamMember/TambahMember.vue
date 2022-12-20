@@ -1,6 +1,6 @@
 <template>
   <v-main class="teammember" >
-    <h3 class="text-h3 font-weight-medium mb-5" style=" color:#3C2317">Team Member</h3>
+    <h3 class="text-h3 font-weight-medium mb-5" style=" color:#000000">Team Member</h3>
 
     <v-card>
       <v-card-title>
@@ -14,7 +14,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn v-if="TeamMember.length != 4" color="brown lighten-1" dark @click="dialog = true"> Tambah </v-btn>
+        <v-btn v-if="TeamMember.length != 4" color="black" dark @click="dialog = true"> Tambah </v-btn>
 
       </v-card-title>
       <v-data-table :headers="headers" :items="TeamMember" :search="search">
@@ -32,7 +32,7 @@
     </v-card>
 
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card color="brown lighten-5">
+      <v-card color="white">
         <v-card-title>
           <span class="headline">{{formTitle}} Team Member</span>
         </v-card-title>
@@ -52,14 +52,13 @@
 
 
     <v-dialog v-model="dialogConfirm" persistent max-width="400px">
-      <v-card color="brown lighten-5">
+      <v-card color="white">
         <v-card-title>
-          <span class="headline">WARNING !</span>
+          <span class="headline">Ingin Menghapus Member?</span>
         </v-card-title>
-        <v-card-text> Ingin Menghapus Member? </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="brown darken-1" text @click="dialogConfirm = false">
+          <v-btn color="black" text @click="dialogConfirm = false">
             Cancel
           </v-btn>
           <v-btn color="red darken-1" text @click="deleteData"> Delete </v-btn>
@@ -78,7 +77,7 @@ export default {
   name: "TambahMember",
   data() {
     return {
-      inputType: 'Tambah',
+      type: 'Tambah',
       load: false,
       snackbar: false,
       error_message: '',
@@ -103,7 +102,7 @@ export default {
   },
   methods: {
     setForm(){
-      if(this.inputType !== 'Tambah'){
+      if(this.type !== 'Tambah'){
         this.update();
       }
       else{
@@ -145,13 +144,13 @@ export default {
       });
     },
     update(){
-      let newData = {
+      let update = {
         member_name : this.form.member_name,
         id_game: this.form.id_game,
       };
       var url = this.$api + '/teammember/' + this.editId;
       this.load = true;
-      this.$http.put(url, newData, {
+      this.$http.put(url, update, {
         headers: {
           'Authorization' : 'Bearer ' + localStorage.getItem('token')
         }
@@ -163,7 +162,7 @@ export default {
         this.close();
         this.readData();
         this.resetForm();
-        this.inputType = 'Tambah';
+        this.type = 'Tambah';
       }).catch(error => {
         this.error_message = error.response.data.message;
         this.color = 'red';
@@ -188,7 +187,7 @@ export default {
           this.close();
           this.readData();
           this.resetForm();
-          this.inputType = "Tambah";
+          this.type = "Tambah";
         })
         .catch((error) => {
           this.error_message = error.response.data.message;
@@ -198,7 +197,7 @@ export default {
         });
     },
     editHandler(item){
-      this.inputType = 'Ubah';
+      this.type = 'Ubah';
       this.editId = item.id;
       this.form.member_name = item.member_name;
       this.form.id_game = item.id_game;
@@ -210,7 +209,7 @@ export default {
     },
     close() {
       this.dialog = false;
-      this.inputType = "Tambah";
+      this.type = "Tambah";
       this.dialogConfirm = false;
       this.readData();
     },
@@ -219,7 +218,7 @@ export default {
       this.readData();
       this.dialog = false;
       this.dialogConfirm = false;
-      this.inputType = "Tambah";
+      this.type = "Tambah";
     },
     resetForm() {
       this.form = {
@@ -230,7 +229,7 @@ export default {
   },
   computed: {
     formTitle() {
-      return this.inputType;
+      return this.type;
     },
   },
   mounted() {

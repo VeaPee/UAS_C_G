@@ -51,9 +51,17 @@ class TeamMemberController extends Controller
      * @return void
      */
 
-    public function update(Request $request, TeamMember $teamMember)
+    public function update(Request $request, $id)
     {
+        $teamMember = teamMember::find($id);
+
+        if(is_null($teamMember)){
+            return response(['message' => 'Data Not Found'], 404);
+        }
+
         //set validation
+        
+
         $validator = Validator::make($request->all(), [
             'member_name' => 'required',
             'id_game' => 'required|numeric',
@@ -64,11 +72,8 @@ class TeamMemberController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        //find team by ID
-        $teamMember = TeamMember::findOrFail($teamMember->id);
 
         if($teamMember) {
-
             //team post
             $teamMember->update([
                 'member_name' => $request->member_name,

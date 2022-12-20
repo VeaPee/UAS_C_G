@@ -1,6 +1,6 @@
 <template>
     <v-main class="tournament" >
-      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#3C2317">Buat Tournament</h3>
+      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#000000">Buat Tournament</h3>
   
       <v-card>
         <v-card-title>
@@ -14,7 +14,7 @@
   
           <v-spacer></v-spacer>
   
-          <v-btn color="brown lighten-1" dark @click="dialog = true"> Tambah </v-btn>
+          <v-btn color="black" dark @click="dialog = true"> Tambah </v-btn>
   
         </v-card-title>
         <v-data-table :headers="headers" :items="Tournaments" :search="search">
@@ -32,16 +32,17 @@
       </v-card>
   
       <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-card color="brown lighten-5">
+        <v-card color="white">
           <v-card-title>
             <span class="headline">{{formTitle}} tournament</span>
           </v-card-title>
           <v-card-text>
             <v-container>
               <v-text-field v-model="form.nama_tournament" label="Nama Tournament" required></v-text-field>
-              <v-text-field v-model="form.tanggal_tournament" label="Tanggal Tournament" required></v-text-field>
-              <v-text-field v-model="form.prizepool" label="Prizepool" required></v-text-field>
-              <v-text-field v-model="form.totalTeam" label="Total Team" required></v-text-field>
+              <date-picker v-model="form.tanggal_tournament" label="Tanggal Tournament" type="date"></date-picker>
+              <v-text-field prefix="Rp " v-model="form.prizepool" label="Prizepool" required></v-text-field>
+              <v-select v-model="form.totalTeam" 
+              :items="['16', '32', '64']" label="Total Team" required></v-select>
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -54,14 +55,13 @@
   
   
       <v-dialog v-model="dialogConfirm" persistent max-width="400px">
-        <v-card color="brown lighten-5">
+        <v-card color="white">
           <v-card-title>
-            <span class="headline">WARNING !</span>
+            <span class="headline">Ingin Menghapus Tournament?</span>
           </v-card-title>
-          <v-card-text> Ingin Menghapus Tournament? </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="brown darken-1" text @click="dialogConfirm = false">
+            <v-btn color="black" text @click="dialogConfirm = false">
               Cancel
             </v-btn>
             <v-btn color="red darken-1" text @click="deleteData"> Delete </v-btn>
@@ -76,11 +76,15 @@
   
   
   <script>
+  import DatePicker from 'vue2-datepicker';
+  import 'vue2-datepicker/index.css';
+
   export default {
+    components: { DatePicker },
     name: "TournamentPage",
     data() {
       return {
-        inputType: 'Tambah',
+        type: 'Tambah',
         load: false,
         snackbar: false,
         error_message: '',
@@ -109,7 +113,7 @@
     },
     methods: {
       setForm(){
-        if(this.inputType !== 'Tambah'){
+        if(this.type !== 'Tambah'){
           this.update();
         }
         else{
@@ -153,7 +157,7 @@
         });
       },
       update(){
-        let newData = {
+        let update = {
           nama_tournament : this.form.nama_tournament,
           tanggal_tournament : this.form.tanggal_tournament,
           prizepool : this.form.prizepool,
@@ -161,7 +165,7 @@
         };
         var url = this.$api + '/tournament/' + this.editId;
         this.load = true;
-        this.$http.put(url, newData, {
+        this.$http.put(url, update, {
           headers: {
             'Authorization' : 'Bearer ' + localStorage.getItem('token')
           }
@@ -173,7 +177,7 @@
           this.close();
           this.readData();
           this.resetForm();
-          this.inputType = 'Tambah';
+          this.type = 'Tambah';
         }).catch(error => {
           this.error_message = error.response.data.message;
           this.color = 'red';
@@ -198,7 +202,7 @@
             this.close();
             this.readData(); //mengambil data
             this.resetForm();
-            this.inputType = "Tambah";
+            this.type = "Tambah";
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
@@ -208,7 +212,7 @@
           });
       },
       editHandler(item){
-        this.inputType = 'Ubah';
+        this.type = 'Ubah';
         this.editId = item.id;
         this.form.nama_tournament = item.nama_tournament;
         this.form.tanggal_tournament = item.tanggal_tournament;
@@ -222,7 +226,7 @@
       },
       close() {
         this.dialog = false;
-        this.inputType = "Tambah";
+        this.type = "Tambah";
         this.dialogConfirm = false;
         this.readData();
       },
@@ -231,7 +235,7 @@
         this.readData();
         this.dialog = false;
         this.dialogConfirm = false;
-        this.inputType = "Tambah";
+        this.type = "Tambah";
       },
       resetForm() {
         this.form = {
@@ -244,7 +248,7 @@
     },
     computed: {
       formTitle() {
-        return this.inputType;
+        return this.type;
       },
     },
     mounted() {
