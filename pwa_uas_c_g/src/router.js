@@ -7,6 +7,12 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes:[
+      // {
+      //   path: "/home",
+      //   name: "HomePage",
+      //   meta: { title: "Home" },
+      //   component: ()=> import("@/components/HomePage.vue"),
+      // },
       {
           path: "/",
           name: "beranda",

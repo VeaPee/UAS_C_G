@@ -28,7 +28,7 @@
                 <router-link class="nav-link" :to="{ path: '/aboutus' }">About Us</router-link>
               </li>
               <!-- <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/home' }">home</router-link>
+                <router-link class="nav-link" :to="{ path: '/home' }">Home</router-link>
               </li> -->
             </ul>
             
