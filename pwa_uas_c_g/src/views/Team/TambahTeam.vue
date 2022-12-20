@@ -4,13 +4,6 @@
   
       <v-card>
         <v-card-title>
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
   
           <v-spacer></v-spacer>
   
@@ -60,7 +53,7 @@
           </v-card-title>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="black" text @click="dialogConfirm = false">
+            <v-btn color="green" text @click="dialogConfirm = false">
               Cancel
             </v-btn>
             <v-btn color="red darken-1" text @click="deleteData"> Delete </v-btn>
@@ -188,9 +181,8 @@
         });
       },
       deleteData() {
-        //mengahapus data
         var url = this.$api + '/team/' + this.deleteId;
-        //data dihapus berdasarkan id
+
         this.$http.delete(url, {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -202,7 +194,7 @@
             this.snackbar = true;
             this.load = false;
             this.close();
-            this.readData(); //mengambil data
+            this.readData();
             this.resetForm();
             this.type = "Tambah";
           })
