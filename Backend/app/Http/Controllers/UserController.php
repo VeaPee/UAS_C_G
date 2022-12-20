@@ -36,7 +36,7 @@ class UserController extends Controller
             'name' => 'required|max:60',
             'email' => 'required|email:rfc,dns|unique:users' . $user->id,
             'password' => 'required',
-            'picture' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'nomor_hp' => 'required'
         ]);
 
         // if validation failed
@@ -47,12 +47,7 @@ class UserController extends Controller
                 'data' => $validate->errors()
             ], 400);
         }
-        
-        $up = 'users';
-        $image = $request->file('picture');
-        $image_uploaded_path = $image->store($up, 'public');
-        $user['picture'] = basename($image_uploaded_path);
-
+    
         $user['password'] = bcrypt($request->password);
 
         $user = User::find($user->id);

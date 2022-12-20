@@ -6,19 +6,17 @@
 
         <v-text-field 
           label="Email" 
-          v-model="user.email" 
+          v-model="email" 
           placeholder="Masukkan Email" 
-          outlined 
-          :error-messages="errors.username">
+          outlined >
         </v-text-field>
 
         <v-text-field 
           type="password" 
           label="Password" 
-          v-model="user.password" 
+          v-model="password" 
           placeholder="Masukkan Password" 
-          outlined 
-          :error-messages="errors.password">
+          outlined >
         </v-text-field>
 
           <v-btn block class="m-0" color="success" :loading="isLoading" @click="login()">Masuk</v-btn>
@@ -28,38 +26,49 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 
 /* eslint-disable */
 export default {
   name: 'LoginPage',
 
-  data: () => ({
-    user: {
-      email: '',
-      password: ''
-    },
-    errors: {},
-    isLoading: false
-  }),
+  data() {
+    return {
+      isLoading: false,
+      snackbar: false,
+      error_message: "",
+      valid: false,
+      color: "",
+      password: "",
+      email: "",
+    };
+  },
 
   methods: {
     login() {
-      this.isLoading = true
-      axios.post('http://127.0.0.1:8000/api/' + "login", JSON.stringify(this.user), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      this.isLoading = true;
+      this.$http
+          .post(this.$api + "/login", {
+            email: this.email,
+            password: this.password,
+          })
         .then((response) => {
-          this.isLoading = false
-          localStorage.setItem('token', response.data.token);
-          this.$router.push('/')
+              this.isLoading = false;
+              this.token = response.data.token;
+              this.user = response.data.data;
+              localStorage.setItem("token", response.data.token);
+              this.error_message = response.data.message;
+              this.color = "green";
+              this.snackbar = true;
+              this.$router.push('/')
+          
         })
-        .catch((err) => {
-          this.isLoading = false;
-          this.errors = err.response.data.errors || {}
-        })
+        .catch((error) => {
+            this.error_message = error.data.response.message;
+            this.color = "red";
+            this.snackbar = true;
+            localStorage.removeItem("token");
+            this.load = false;
+          });
     }
   }
 }

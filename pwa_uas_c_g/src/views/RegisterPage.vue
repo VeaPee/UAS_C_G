@@ -20,6 +20,14 @@
           </v-text-field>
 
           <v-text-field 
+            label="Nomor HP" 
+            v-model="user.nomor_hp" 
+            placeholder="Masukkan Nomor HP" 
+            :error-messages="errors.nomor_hp" 
+            outlined>
+          </v-text-field>
+
+          <v-text-field 
             label="Password" 
             type="password" 
             v-model="user.password" 
@@ -28,52 +36,45 @@
             outlined>
           </v-text-field>
           
-          <v-file-input 
-            v-model="user.picture" 
-            :error-messages="errors.picture" 
-            placeholder="Upload Foto" 
-            label="Upload Foto" 
-            outlined dense>
-          </v-file-input>
-            <v-btn block :loading="isLoading" @click="register()" color="success">Daftar</v-btn>
+            <v-btn block :loading="load" @click="register()" color="success">Daftar</v-btn>
               <p class="mt-3 text-center">Sudah Punya Akun? <router-link to="/login">Masuk</router-link></p>
         </v-card>
       </v-container>
     </div>
   </template>
   <script>
-  import axios from 'axios'
   /* eslint-disable */
   export default {
     name: 'RegisterPage',
   
     data: () => ({
+      load: false,
+      snackbar: false,
       user: {
         name: '',
+        nomor_hp: '',
         email: '',
-        password: '',
-        picture: '',
+        password: ''
       },
       errors: {},
-      isLoading: false
     }),
   
     methods: {
       register() {
-        this.isLoading = true
-        axios.post('http://127.0.0.1:8000/api/' + "register", this.user, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-          .then(res => {
-            this.isLoading = false
+        this.load = true
+        this.$http.post(this.$api + "register", JSON.stringify(this.user))
+          .then(response => {
+            this.error_message = response.data.message;
+            this.color = "green";
+            this.snackbar = true;
+            this.load = false;
             this.$router.push('/login')
           })
-          .catch(err => {
-            this.isLoading = false;
-            console.log(err);
-            this.errors = err.response.data.errors || {}
+          .catch(error => {
+            this.error_message = error.response.data.message;
+            this.color = "red";
+            this.snackbar = true;
+            this.load = false;
           })
       }
     }

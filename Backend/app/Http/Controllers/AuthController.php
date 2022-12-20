@@ -19,16 +19,11 @@ class AuthController extends Controller
             'name' => 'required|max:60',
             'email' => 'required|email:rfc,dns|unique:users',
             'password' => 'required',
-            'picture' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'nomor_hp' => 'required'
         ]);
 
         if($validate->fails())
             return response(['message' => $validate->errors()], 400);
-            
-        $up = 'users';
-        $image = $request->file('picture');
-        $image_uploaded_path = $image->store($up, 'public');
-        $registrationData['picture'] = basename($image_uploaded_path);
 
         $registrationData['password'] = bcrypt($request->password);
 
@@ -79,6 +74,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'User Logged In Successfully',
+            'data' => $user,
             'token' => $user->createToken("API TOKEN")->plainTextToken
         ], 200);
 

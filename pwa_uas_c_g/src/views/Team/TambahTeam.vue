@@ -91,7 +91,7 @@ import axios from 'axios'
               },
               {
                 headers: {
-                  Authorization: "Bearer " + localStorage.getItem("token"),
+                  'Authorization': 'Bearer '  + localStorage.getItem('token'),
                 },
               })
             .then((response) => {
@@ -101,8 +101,8 @@ import axios from 'axios'
               this.load = true;
               this.resetForm();
             })
-            .catch((error) => {
-              this.error_message = error.response.data.message;
+            .catch(() => {
+              this.error_message = localStorage.getItem("token");
               this.color = "red";
               this.snackbar = true;
               this.load = false;
@@ -119,6 +119,7 @@ import axios from 'axios'
           analis: null,
         };
       },
+      
     // mounted() {
     //   this.read_promo_id();
     // },
