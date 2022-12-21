@@ -39,7 +39,7 @@ const router = new VueRouter({
                 {
                   path: "/aboutus",
                   component: () => import("@/views/AboutUs.vue"),
-                  name: "TentangKami",
+                  name: "AboutUs",
                   meta: { title: "About" },
                 },
                 {
@@ -49,7 +49,7 @@ const router = new VueRouter({
                   meta: {title: "Team"},
                 },
                 {
-                  path: "/tambahmember",
+                  path: "/tambahteammember",
                   component: () => import("@/views/TeamMember/TambahMember.vue"),
                   name: "TambahMember",
                   meta: {title: "Member Team"},

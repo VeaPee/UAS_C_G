@@ -1,8 +1,17 @@
 <template>
-  <v-main class="teammember" >
-    <h3 class="text-h3 font-weight-medium mb-5" style=" color:#000000">Team Member</h3>
+  <v-main class="teammember" style="margin-right:5cm; margin-top: 3cm;" >
+    <h3 class="text-h3 font-weight-medium mb-5" style=" color:#000000; font-family: Arial, Helvetica, sans-serif; font: bold; margin: center;">Team Member</h3>
 
-    <v-card>
+    <v-card style="color: #202020;">
+      <v-list-item>
+          <v-list-item-avatar color="darkgrey">
+            <img src="https://i.pinimg.com/564x/4a/9f/d2/4a9fd2a17a67a4f25248839e078273a4.jpg" />
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title class="headline">My Team</v-list-item-title>
+            <v-list-item-subtitle>Esport</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
       <v-card-title>
         <v-text-field
           v-model="search"
@@ -31,7 +40,7 @@
       </v-data-table>
     </v-card>
 
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="750px">
       <v-card color="white">
         <v-card-title>
           <span class="headline">{{formTitle}} Team Member</span>
@@ -51,7 +60,7 @@
     </v-dialog>
 
 
-    <v-dialog v-model="dialogConfirm" persistent max-width="400px">
+    <v-dialog v-model="dialogConfirm" persistent max-width="420px">
       <v-card color="white">
         <v-card-title>
           <span class="headline">Ingin Menghapus Member?</span>
@@ -70,6 +79,17 @@
 
   </v-main>
 </template>
+
+<style>
+  .teammember{
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      to right,
+      rgba(3, 12, 41, 0.75),
+      rgba(5, 11, 31, 0.65)
+    );
+  }
+</style>
 
 
 <script>

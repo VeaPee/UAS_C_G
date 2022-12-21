@@ -2,8 +2,8 @@
     <v-main class="profil" style="height: 100%">
       <div class="d-flex justify-content-center mt-16">
         <v-card persistent min-width="400px" elevation="8">
-          <v-card-title class="backgroundhead">
-            <span class="headline"><b>Profile</b></span>
+          <v-card-title id="backgroundhead">
+            <span class="headline" style="color: white ;"><b>Profile</b></span>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -43,8 +43,9 @@
   </template>
   
   <style scoped>
-  .backgroundhead {
+  #backgroundhead {
     background-color: #d0d0d0;
+    background-image: url('https://asset-a.grid.id/crop/0x0:0x0/700x0/photo/2022/10/26/dota2_ti11_singapore_suntec_main-20221026050323.jpg');
   }
   </style>
   

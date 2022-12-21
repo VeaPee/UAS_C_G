@@ -30,10 +30,6 @@
             <v-btn @click="register" :x-large="$vuetify.breakpoint.smAndUp" class="my-3 orange white--text"
               >Register</v-btn
             >
-            
-=
-        
-            
           </div>
         </v-container>
       </v-carousel-item>
@@ -89,7 +85,7 @@ export default {
     },
     contact(){
       this.$router.push({
-        name: "aboutus",
+        name: "AboutUs",
       })
     }
   }

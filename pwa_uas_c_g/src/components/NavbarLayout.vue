@@ -16,6 +16,9 @@
                 <router-link class="nav-link" :to="{ path: '/tambahteam' }">Team</router-link>
               </li>
               <li class="nav-item">
+                <router-link class="nav-link" :to="{ path: '/tambahteammember' }">Team Member</router-link>
+              </li>
+              <li class="nav-item">
                 <router-link class="nav-link" :to="{ path: '/tambahtournament' }">Tournament</router-link>
               </li>
               <li class="nav-item">
