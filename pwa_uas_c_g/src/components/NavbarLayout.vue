@@ -93,7 +93,7 @@ import axios from 'axios'
       },
       logout() {
         this.load = true;
-          axios.get('http://127.0.0.1:8000/api/' + "logout", {
+          axios.get(this.$api + '/logout', {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
             }
