@@ -1,6 +1,6 @@
   <template>
     <v-main class="team" style="margin-right:5cm; margin-top: 3cm;">
-      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#000000; font-family: Arial, Helvetica, sans-serif; font: bold; margin: center;">Buat Team</h3>
+      <h3 class="text-h3 font-weight-medium strokeme" style=" color:#FFFFFF; font-family: Arial, Helvetica, sans-serif; font: bold; margin: center;">Buat Team</h3>
   
       <v-card>
         <v-list-item>
@@ -89,6 +89,11 @@
       rgba(3, 12, 41, 0.75),
       rgba(5, 11, 31, 0.65)
     );
+  }
+
+  .strokeme {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   }
 </style>
   
@@ -259,7 +264,7 @@
         };
       },
       rute(){
-        this.$router.push('/TambahMember')
+        this.$router.push('/tambahteammember')
       }
     },
     computed: {

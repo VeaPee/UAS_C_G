@@ -1,7 +1,7 @@
 <template>
   
     <v-main class="tournament" style="margin-right:5cm; margin-top: 3cm; " >
-      <h3 class="text-h3 font-weight-medium mb-5" style=" color:#000000; font-family: Arial, Helvetica, sans-serif; font: bold; margin: center;">Buat Tournament</h3>
+      <h3 class="text-h3 font-weight-medium strokeme" style=" color:#FFFFFF; font-family: Arial, Helvetica, sans-serif; font: bold; margin: center;">Buat Tournament</h3>
   
       <v-card >
         <v-list-item>
@@ -95,7 +95,10 @@
     );
 
   }
-  
+  .strokeme {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
 </style>
   
   
